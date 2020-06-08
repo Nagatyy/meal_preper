@@ -1,0 +1,83 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+
+	<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <meta charset="utf-8">
+
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' type='image/x-icon' %}">
+    <link rel="stylesheet" type="css" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/balzss/luxbar/ae5835e2/build/luxbar.min.css">
+
+
+</head>
+
+    
+<body>
+
+    <header id="luxbar" class="luxbar-fixed">
+        <div class="luxbar luxbar-static">
+            <input type="checkbox" id="luxbar-checkbox" class="luxbar-checkbox">
+            <div class="luxbar-menu luxbar-menu-right luxbar-menu-dark">
+                <ul class="luxbar-navigation">
+                    <li class="luxbar-header">
+                        <a class="luxbar-brand" href="{% url 'home' %}">Meal Preper</a>
+                        <label class="luxbar-hamburger luxbar-hamburger-doublespin"
+                            for="luxbar-checkbox"> <span></span> </label>
+                    </li>
+
+                    <li class="luxbar-item"><a href="{% url 'home' %}">Home</a></li>
+                    {% if user.is_authenticated %}
+                        <li class="luxbar-item"><a href="{% url 'profile' %}">Profile</a></li>
+                        <li class="luxbar-item"><a href="{% url 'logout' %}">Logout</a></li>
+                    {% else %}
+                        <li class="luxbar-item"><a href="{% url 'login' %}">Login</a></li>
+                        <li class="luxbar-item"><a href="{% url 'register' %}">Register</a></li>
+                    {% endif %}
+
+                </ul>
+            </div>
+        </div>
+    </header>
+
+
+
+
+    <div class="container pt-5">
+        {% if messages %}
+        {% for message in messages %}
+
+        <div class="alert alert-{{ message.tags }}"> 
+            {{ message }}
+        </div>
+
+        {% endfor %}
+        {% endif %}
+            
+        {% block content %}
+        replace me
+        {% endblock content%}
+
+     </div>
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</body>
+
+</html>

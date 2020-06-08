@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/register_style.css' %}">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+            crossorigin="anonymous">
+
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
+
+<body>
+        <div id="form_wrapper">
+            <div id="form_left">
+                <div class="container">
+                    <h1> Create an Account </h1>
+                    <img class="center" src="{% static 'images/main_logo.png' %}" alt="food icon">
+                </div>
+                
+            </div>
+            
+
+            <div id="form_right">
+            	<form class = "frm" method="POST">
+	      		{% csrf_token %}
+	      		<fieldset class="form-group">
+	      			{{ form | crispy }}
+	      			<input type="submit" value="Sign Up" id='input_submit' class='input_field'>
+	      		</fieldset>
+                <hr>
+	       
+	        	<a href="{% url 'login' %}">Already Have an Account? Login</a>
+	      </form>
+                
+            </div>
+        </div>
+</body>
+
+
+{% endblock content %}
+
+
+

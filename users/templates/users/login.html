@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/login_style.css' %}">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+            crossorigin="anonymous">
+
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
+
+<body>
+        <div id="form_wrapper">
+            <div id="form_left">
+                <img src="{% static 'images/main_logo.png' %}" alt="food icon">
+            </div>
+            <div id="form_right">
+                <h1>Member Login</h1>
+                
+            <form class = "frm" method="POST">
+                {% csrf_token %}
+                <fieldset class="form-group">
+                    {{ form | crispy }}
+                    <input type="submit" value="Login" id='input_submit' class='input_field'>
+                </fieldset>
+                <hr>
+
+
+
+                <a href="#"> Forgot Your Password?</a>
+                <span id='create_account'>
+                    <a href="{% url 'register' %}">Create your account ➡ </a>
+                </span>
+
+            </form>
+
+
+
+            </div>
+        </div>
+</body>
+
+
+{% endblock content %}
+
+
+
+
+<!-- Adapted from:
+https://inspiredwebdev.com/create-responsive-html-login-form -->
