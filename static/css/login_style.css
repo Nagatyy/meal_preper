@@ -1,8 +1,7 @@
 {% load static %}
 
 :root {
-        --body_gradient_left:#7200D0;
-        --body_gradient_right: #C800C1;
+        --body_bg:#635efa;
         --form_bg: #ffffff;
         --input_bg: #E5E5E5;
         --input_hover:#eaeaea;
@@ -25,7 +24,7 @@ body {
         font-family: 'Roboto',
         sans-serif;
         /* create a linear gradient*/
-        background: #98FB98;
+        background: linear-gradient(0deg, #9cff98 0%, rgba(61,186,88,1) 100%);
         display:flex;
 }
 

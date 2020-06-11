@@ -1,12 +1,42 @@
 {% extends 'base.html' %}
 
-{% load static %}
 {% load crispy_forms_tags %}
 
 
 {% block content %}
 
-<h1> Welcome {{ user.username }} </h1>
+<div class="container pt-5">
+ 		<!-- empty of spacing --->	
+</div>
+
+<div class="container pt-5">
+
+	<div class="content-section">
+      <div class="media">
+        <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
+        <div class="media-body">
+          <h2 class="account-heading">{{ user.username }}</h2>
+          <p class="text-secondary">{{ user.email }}</p>
+        </div>
+      </div>
+      <!-- FORM HERE -->
+    </div>
+
+</div>
+
+<style type="text/css">
+  .account-img {
+  height: 125px;
+  width: 125px;
+  margin-right: 20px;
+  margin-bottom: 16px;
+}
+
+.account-heading {
+  font-size: 2.5rem;
+}
+</style>
+
 
 
 {% endblock content %}

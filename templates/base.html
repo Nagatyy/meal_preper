@@ -12,62 +12,57 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <meta charset="utf-8">
-
     <link rel="shortcut icon" href="{% static 'images/favicon.ico' type='image/x-icon' %}">
-    <link rel="stylesheet" type="css" href="{% static 'css/main.css' %}">
-    <link rel="stylesheet" href="https://cdn.rawgit.com/balzss/luxbar/ae5835e2/build/luxbar.min.css">
+    <link rel="stylesheet" href="{% static 'css/navbar_style.css' %}">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script type="text/javascript" src=" {% static 'js/navbar.js'%}"></script>
 
 </head>
 
     
 <body>
 
-    <header id="luxbar" class="luxbar-fixed">
-        <div class="luxbar luxbar-static">
-            <input type="checkbox" id="luxbar-checkbox" class="luxbar-checkbox">
-            <div class="luxbar-menu luxbar-menu-right luxbar-menu-dark">
-                <ul class="luxbar-navigation">
-                    <li class="luxbar-header">
-                        <a class="luxbar-brand" href="{% url 'home' %}">Meal Preper</a>
-                        <label class="luxbar-hamburger luxbar-hamburger-doublespin"
-                            for="luxbar-checkbox"> <span></span> </label>
-                    </li>
+    <!--- Navigation Bar ------->
+    <!--- Nav bar adapted from: https://bootstrapious.com/p/transparent-navbar --------->
 
-                    <li class="luxbar-item"><a href="{% url 'home' %}">Home</a></li>
+    <header class="header">
+
+
+        <nav class="navbar navbar-expand-lg fixed-top py-3">
+        <div class="container"><a href="{% url 'home' %}" class="navbar-brand text-uppercase font-weight-bold">Meal Preper</a>
+            <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right"><i class="fa fa-bars"></i></button>
+            
+            <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active"><a href="{% url 'home' %}" class="nav-link text-uppercase font-weight-bold">Home <span class="sr-only">(current)</span></a></li>
+
                     {% if user.is_authenticated %}
-                        <li class="luxbar-item"><a href="{% url 'profile' %}">Profile</a></li>
-                        <li class="luxbar-item"><a href="{% url 'logout' %}">Logout</a></li>
+                        <li class="nav-item"><a href="{% url 'profile' %}" class="nav-link text-uppercase font-weight-bold">Profile</a></li>
+                        <li class="nav-item"><a href="{% url 'logout' %}" class="nav-link text-uppercase font-weight-bold">Logout</a></li>
                     {% else %}
-                        <li class="luxbar-item"><a href="{% url 'login' %}">Login</a></li>
-                        <li class="luxbar-item"><a href="{% url 'register' %}">Register</a></li>
+                        <li class="nav-item"><a href="{% url 'login' %}" class="nav-link text-uppercase font-weight-bold">Login</a></li>
+                        <li class="nav-item"><a href="{% url 'register' %}" class="nav-link text-uppercase font-weight-bold">Register</a></li>
                     {% endif %}
-
                 </ul>
+                </div>
             </div>
-        </div>
+        </nav>
+        
+
+    <!--- /Navigation Bar ------->
+
+
     </header>
 
 
 
-
-    <div class="container pt-5">
-        {% if messages %}
-        {% for message in messages %}
-
-        <div class="alert alert-{{ message.tags }}"> 
-            {{ message }}
-        </div>
-
-        {% endfor %}
-        {% endif %}
             
         {% block content %}
         replace me
         {% endblock content%}
-
-     </div>
 
 
 

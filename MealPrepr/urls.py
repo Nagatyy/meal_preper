@@ -19,6 +19,10 @@ from users.views import register_view, profile_view
 from django.contrib.staticfiles.urls import  staticfiles_urlpatterns
 from django.contrib.auth import views as auth_views
 from pages.views import home_view
+from django.conf import settings
+from django.conf.urls.static import static
+
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -31,7 +35,13 @@ urlpatterns = [
 
     path('', home_view, name='home'),
 
+] 
 
-]
+
+# only add this when you are in DEBUG mode (not for deployment)
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += staticfiles_urlpatterns()
+
+

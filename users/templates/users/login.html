@@ -1,3 +1,7 @@
+<!-- Adapted from:
+https://inspiredwebdev.com/create-responsive-html-login-form -->
+
+
 {% extends 'base.html' %}
 
 {% load static %}
@@ -15,6 +19,24 @@
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
 
 <body>
+
+    <div class="container pt-5">
+
+         <div class="pt-3">
+
+            {% if messages %}
+            {% for message in messages %}
+
+            <div class="alert alert-{{ message.tags }}"> 
+                {{ message }}
+            </div>
+
+            {% endfor %}
+            {% endif %}
+
+         </div>
+
+
         <div id="form_wrapper">
             <div id="form_left">
                 <img src="{% static 'images/main_logo.png' %}" alt="food icon">
@@ -43,13 +65,8 @@
 
             </div>
         </div>
+    </div>
 </body>
 
 
 {% endblock content %}
-
-
-
-
-<!-- Adapted from:
-https://inspiredwebdev.com/create-responsive-html-login-form -->

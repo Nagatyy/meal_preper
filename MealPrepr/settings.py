@@ -25,7 +25,7 @@ SECRET_KEY = 'c2o=$wkl1&vo8q0z!ix=r*gqm4gicui8w1=%3d-twtskq#s2ax'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.1.2', 'localhost', '127.0.0.1']
 
 
 
@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
     'users.apps.UsersConfig',
     'crispy_forms',
+    'jquery',
 
 ]
 
@@ -123,6 +124,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # the directory where the uploaded files will be saved,
+                                             # media will be loacted in the base/media dir 
+                                             # the profile_pics dir will now be inside media
+MEDIA_URL = '/media/'                        # the public URL of this directory (to access in browser)
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
