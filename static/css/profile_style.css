@@ -1,0 +1,47 @@
+body {
+
+}
+
+
+.account-img {
+  height: 125px;
+  width: 125px;
+  margin-right: 20px;
+  margin-bottom: 16px;
+}
+
+.account-heading {
+  font-size: 2rem;
+}
+
+
+.container.pt-5{
+	margin-top: 3%;
+    display:flex;
+	height: 100vh;
+	background-color:blue;
+  	margin: auto;
+}
+
+.content-section{
+	background: white;
+	padding: 5%;
+	border-radius: 10px;
+	display: flex;
+
+}
+
+
+
+
+@media screen and (max-width:768px) {
+
+	.container.pt-5{
+		margin-top: 8%;
+	}
+	.account-heading{
+		font-size: 1em;
+	}
+
+    
+}

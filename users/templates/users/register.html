@@ -13,39 +13,108 @@
 
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
 
+<script src="https://cdn.jsdelivr.net/gh/StephanWagner/jBox@v1.2.0/dist/jBox.all.min.js"></script>
+<link href="https://cdn.jsdelivr.net/gh/StephanWagner/jBox@v1.2.0/dist/jBox.all.min.css" rel="stylesheet">
+
 <body>
     <div class="container pt-5">
 
         <div id="form_wrapper">
             <div id="form_left">
                 <div class="container">
-                    <h1> Create an Account </h1>
+                    {% if wizard.steps.prev %}
+                        <h1> Tell us more ... </h1>
+                    {% else %}
+                        <h1> REGISTER </h1>
+                    {% endif %}
+
                     <img class="center" src="{% static 'images/main_logo.png' %}" alt="food icon">
                 </div>
                 
             </div>
-            
 
             <div id="form_right">
-            	<form class = "frm" method="POST">
-	      		{% csrf_token %}
-	      		<fieldset class="form-group">
-	      			{{ form | crispy }}
-	      			<input type="submit" value="Sign Up" id='input_submit' class='input_field'>
-	      		</fieldset>
-                <hr>
-	       
-	        	<a href="{% url 'login' %}">Already Have an Account? Login</a>
-	      </form>
-                
+
+                {{ wizard.form.media }}
+
+                <form action="/register/" method="POST" class="frm"> 
+                    {% csrf_token %}
+
+                    <fieldset class="form-group">
+                        {{ wizard.management_form }}
+
+                            {% if not wizard.steps.prev %}
+                                {{ wizard.form | crispy }} 
+                            {% else %}
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-6 mb-0">
+                                        {{ wizard.form.weight|as_crispy_field }}
+                                    </div>
+                                    <div class="form-group col-md-6 mb-0">
+                                        {{ wizard.form.preferred_units|as_crispy_field }}
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-6 mb-0">
+                                        {{ wizard.form.gender|as_crispy_field }}
+                                    </div>
+                                    <div class="form-group col-md-6 mb-0">
+                                        {{ wizard.form.age|as_crispy_field }}
+                                    </div>
+                                </div>
+                                
+                                {{ wizard.form.goal|as_crispy_field }}
+
+                                <div class="form-row">
+                                    {{ wizard.form.activity_level|as_crispy_field }}
+                                    <i class="fas fa-question-circle" id="tooltip"></i>
+                                </div>
+
+
+                            {% endif %}
+
+
+                        {% if wizard.steps.prev %}
+                            <input type="submit" value="Submit" id='input_submit' class="input_field" />
+
+                        {% else %}
+                            <input type="submit" value="Next" id='input_submit' class="input_field" />
+
+                        {% endif %}
+
+
+                    </fieldset>
+                    <hr>
+
+                    <a href="{% url 'login' %}">Already Have an Account? Login</a>
+
+                </form>
+                 
             </div>
         </div>
     </div>
+
+
+    <script>
+        $(function(){
+            new jBox('Tooltip', {
+            attach: '#tooltip',
+            pointer: 'left',
+            animation: 'zoomIn',   
+            content: 'Your best estimate for how active you are in a day' ,
+            theme: 'TooltipDark'        
+            });
+        });
+        
+
+    </script>
+
     
 </body>
 
 
 {% endblock content %}
-
 
 

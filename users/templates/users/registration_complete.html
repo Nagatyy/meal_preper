@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+
+{% block content %}
+
+	<link rel="stylesheet" type="text/css" href="{% static 'css/registration_complete_style.css' %}">
+
+	<body>
+
+
+
+		<div class="container pt-5 maindiv">
+
+			<div>
+
+	            {% if messages %}
+	            {% for message in messages %}
+
+	            <div class="alert alert-{{ message.tags }}"> 
+	                {{ message }}
+	            </div>
+
+	            {% endfor %}
+	            {% endif %}
+
+         	</div>
+
+			<h2> Thanks for registering. You can now login! </h2>
+
+			<a href="{% url 'login' %}"> Press here to login </a>
+			<hr>
+
+		</div>
+	</body>
+
+
+
+{% endblock content %}

@@ -160,6 +160,7 @@ body {
             grid-template-columns: 1fr;
             margin-left: 10px;
             margin-right: 10px;
+            height: auto;
         }
         /* on small screen we don't display the image */
         #form_left {

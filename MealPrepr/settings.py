@@ -25,7 +25,7 @@ SECRET_KEY = 'c2o=$wkl1&vo8q0z!ix=r*gqm4gicui8w1=%3d-twtskq#s2ax'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.1.2', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 
 
@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'crispy_forms',
     'jquery',
+    'formtools',
+
 
 ]
 
