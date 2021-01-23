@@ -1,0 +1,9 @@
+.confirmButton {
+	background: #0C7020;
+	color:white;
+}
+
+.confirmButton:not([disabled]):hover{
+	background: #3dba58;
+	color:white;
+}

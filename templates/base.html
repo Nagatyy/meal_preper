@@ -9,6 +9,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <title> Meal Mill - {% block title %} {% endblock title %}</title>
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
@@ -23,7 +25,6 @@
 </head>
 
     
-<body>
 
     <!--- Navigation Bar ------->
     <!--- Nav bar adapted from: https://bootstrapious.com/p/transparent-navbar --------->
@@ -37,12 +38,12 @@
             
             <div id="navbarSupportedContent" class="collapse navbar-collapse">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active"><a href="{% url 'home' %}" class="nav-link text-uppercase font-weight-bold">Home <span class="sr-only">(current)</span></a></li>
+                    
 
                     {% if user.is_authenticated %}
-                        <li class="nav-item"><a href="{% url 'profile' %}" class="nav-link text-uppercase font-weight-bold">Profile</a></li>
-                        <li class="nav-item"><a href="{% url 'logout' %}" class="nav-link text-uppercase font-weight-bold">Logout</a></li>
+                        <li class="nav-item"><a href="{% url 'logout' %}?next=/login" class="nav-link text-uppercase font-weight-bold">Logout</a></li>
                     {% else %}
+                        <li class="nav-item active"><a href="{% url 'home' %}" class="nav-link text-uppercase font-weight-bold">Home <span class="sr-only">(current)</span></a></li>
                         <li class="nav-item"><a href="{% url 'login' %}" class="nav-link text-uppercase font-weight-bold">Login</a></li>
                         <li class="nav-item"><a href="{% url 'register' %}" class="nav-link text-uppercase font-weight-bold">Register</a></li>
                     {% endif %}
@@ -58,6 +59,7 @@
     </header>
 
 
+<body>
 
             
         {% block content %}

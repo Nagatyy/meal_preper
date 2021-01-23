@@ -1,7 +1,13 @@
+<!-- Adapted from:
+https://inspiredwebdev.com/create-responsive-html-login-form -->
 {% extends 'base.html' %}
 
 {% load static %}
 {% load crispy_forms_tags %}
+
+{% block title %}
+    Register
+{% endblock title %}
 
 {% block content %}
 
@@ -16,18 +22,18 @@
 <script src="https://cdn.jsdelivr.net/gh/StephanWagner/jBox@v1.2.0/dist/jBox.all.min.js"></script>
 <link href="https://cdn.jsdelivr.net/gh/StephanWagner/jBox@v1.2.0/dist/jBox.all.min.css" rel="stylesheet">
 
-<body>
+<body class="bodyClass">
     <div class="container pt-5">
 
         <div id="form_wrapper">
             <div id="form_left">
                 <div class="container">
-                    {% if wizard.steps.prev %}
+   <!--                  {% if wizard.steps.prev %}
                         <h1> Tell us more ... </h1>
                     {% else %}
-                        <h1> REGISTER </h1>
+                        <h1> Register </h1>
                     {% endif %}
-
+ -->
                     <img class="center" src="{% static 'images/main_logo.png' %}" alt="food icon">
                 </div>
                 
@@ -64,8 +70,15 @@
                                         {{ wizard.form.age|as_crispy_field }}
                                     </div>
                                 </div>
-                                
-                                {{ wizard.form.goal|as_crispy_field }}
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-6 mb-0">
+                                        {{ wizard.form.goal|as_crispy_field }}
+                                    </div>
+                                    <div class="form-group col-md-6 mb-0">
+                                        {{ wizard.form.height|as_crispy_field }}
+                                    </div>
+                                </div>
 
                                 <div class="form-row">
                                     {{ wizard.form.activity_level|as_crispy_field }}
@@ -99,13 +112,19 @@
 
     <script>
         $(function(){
-            new jBox('Tooltip', {
+            box = new jBox('Tooltip', {
             attach: '#tooltip',
             pointer: 'left',
             animation: 'zoomIn',   
-            content: 'Your best estimate for how active you are in a day' ,
+            content: 
+            'Couch Potato: blah blah:<br/>\
+            Lightly Active: blah blah:<br/>\
+            Moderately Active: blah blah:<br/>\
+            Pretty Active: blah blah',
             theme: 'TooltipDark'        
             });
+
+            box.setWidth(250);
         });
         
 

@@ -1,0 +1,51 @@
+{% extends 'logged_in_base.html' %}
+{% load static %}
+
+
+{% block title %}
+    Contact
+{% endblock title %}
+{% block content %}
+
+    <title>contact</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="{% static 'css/contact.css' %}">
+
+<div class="text-center text-muted">
+    <div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h1>Contact Us!</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <h4 class="text-center">Mohamed</h4>
+                    <h5>b00072311@aus.edu</h5>
+                </div>
+                <div class="col-md-3">
+                    <h4 class="text-center">Shoug</h4>
+                    <h5>g00071152@aus.edu</h5>
+                </div>
+                <div class="col-md-3">
+                    <h4 class="text-center">Omar</h4>
+                    <h5>b00078985@aus.edu</h5>
+                </div>
+                <div class="col-md-3">
+                    <h4 class="text-center">Dawit</h4>
+                    <h5>b00076114@aus.edu</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="social-icons"><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-youtube"></i></a></div>
+    <h4>For any inquires or suggestions please do not hesitate to contact us through our emails</h4>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+</body>
+
+
+
+
+{% endblock content %}

@@ -1,0 +1,328 @@
+{% extends 'logged_in_base.html' %}
+
+{% load static %}
+
+{% block title %}
+	Meal Plan
+{% endblock title %}
+
+
+{% block content %}
+
+
+
+	<head>
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+	    <title>My Meals - Meal Mill</title>
+	    <link rel="stylesheet" href="{% static 'css/meals.min.css' %}">
+	    <link rel="stylesheet" href="{% static 'css/loading.css' %}">
+	    <link rel="stylesheet" href="{% static 'css/sweet_alert.css' %}">
+	    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+
+	    <link rel="stylesheet" href="{% static 'css/meals_mobile.css' %}">
+		<link rel="stylesheet" href="{% static 'css/button_hover.css' %}">
+
+<!-- 	    <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css"> -->
+
+	</head>
+
+	<div id="loader">
+		<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+	</div>
+
+
+
+	<body id="page-top">
+	    <div id="wrapper">
+	        <div class="d-flex flex-column" id="content-wrapper">
+	            <div id="content">
+	                <div class="container-fluid">
+
+	                    <div class="d-sm-flex justify-content-between align-items-center mb-4">
+	                        <h3 class="text-secondary mb-0">Meal Plan</h3>
+	                        <a class="btn btn-sm d-none d-sm-inline-block" role="button" href="#" onclick="window.print()" style="background: #0C7020;color:white;"><i class="fas fa-download"></i>&nbsp;Print Meal Plan</a>
+	                    </div>
+
+
+
+	                    <div class="row">
+	                        <div class="col-lg-6 col-xl-8">
+	                            <div class="card shadow mb-4">
+	                                <div class="card-header d-flex justify-content-between align-items-center">
+	                                    <h6 class="text-secondary font-weight-bold m-0" style="color: #3dba12;"> {{date }}</h6>
+	                                    <button class="btn" style="background: #0C7020;color:white;" type="button" data-toggle="modal" data-target="#regenerateModal">
+	                                    	<span id="spinner"class="spinner-border spinner-border-sm mb-auto" role="status" aria-hidden="true" style="display: none;"></span>
+
+	                                    	<!-- Regenerate All &nbsp;&nbsp; -->
+	                                    	<i id="mainRefresh"class="fa fa-refresh"></i>
+	                                    </button>
+
+	                                </div>
+
+	                                <div class="card-body">
+	                                    {% for i in r_num_of_meals %}
+	                                    	{% include 'meal_plan/meal.html' %}
+  										{% endfor %}
+
+  										<div class="card shadow mb-4">
+								            <div class="card-header d-flex justify-content-between align-items-center">
+								                <h6 class="text-secondary font-weight-bold m-0">
+								                    <span> Snacks </span>
+								            	</h6>
+								            </div>
+								            <div class="card-body">
+								            	<h6 class="text-secondary font-weight-bold m-0"> Snacks allowance: </h6>
+								            	<hr>
+								            	<h6 id="snacksText"class="text-secondary m-0"> You have opted for no snacks </h6>
+								            	
+								            </div>
+								        </div>
+
+	                                </div>
+	                            </div>
+	                        </div>
+	                        
+	                        <div class="col-lg-6 col-xl-4">
+	                            <div class="card shadow mb-4">
+	                                <div class="card-header d-flex justify-content-between align-items-center">
+	                                    <h6 class="text-secondary font-weight-bold m-0">Caloric Breakdown</h6>
+	                                </div>
+	                                <div class="card-body">
+	                                    <div class="chart-area">
+	                                    	<canvas id="pieChart"></canvas>
+	                                    </div>
+	                          
+	                            </div>
+	                        </div>
+	                        <div class="row">
+	                            <div class="col">
+	                                <h4 id="caloriesText" class="text-secondary">Calories in meals: {{calories}}</h4>
+	                                <h4 id="snackCaloriesText" class="text-secondary">Calories in snacks: 100</h4>
+	                                <h4 id="totalCaloriesText" class="text-secondary">Total calories: {{calories}}</h4>
+	                            </div>
+	                        </div>
+	                        <div class="row">
+			                    <div class="col">
+			                        <div class="row">
+			                            <div class="col">
+			                                <div class="card shadow mb-4">
+			                                    <div class="card-header py-3">
+			                                        <h6 class="text-secondary font-weight-bold m-0">Macronutrients</h6>
+			                                    </div>
+			                                    <div class="card-body">
+			                                        <h4  class="small font-weight-bold">
+			                                        	Carbs
+			                                        	<span id = "carbsText" class="float-right">20g</span>
+			                                        </h4>
+			                                        <div class="progress mb-4">
+			                                            <div id = "carbsProgressBar" class="progress-bar" style="background:#15AEC0;width: 50%;">
+			                                            </div>
+			                                        </div>
+			                                        
+			                                        <h4 class="small font-weight-bold">Protein
+			                                        	<span id = "proteinText" class="float-right">40g</span>
+			                                        </h4>
+			                                        <div class="progress mb-4">
+			                                            <div id="proteinProgressBar" class="progress-bar" style="background:#0ED7EF;width: 40%;">
+			                                            	
+			                                            </div>
+			                                        </div>
+			                                        <h4 class="small font-weight-bold">Fat<span id="fatText" class="float-right">60g</span></h4>
+			                                        <div class="progress mb-4">
+			                                            <div id="fatProgressBar" class="progress-bar" style="background:#549198;width: 60%;">
+			                                            </div>
+			                                        </div>
+			                                        
+			                                    </div>
+			                                </div>
+			                            </div>
+			                        </div>
+			                    </div>
+			                </div>
+
+			                <div class="row">
+			                    <div class="col">
+			                        <div class="row">
+			                            <div class="col">
+			                                <div class="card shadow mb-4">
+			                                    <div class="card-header py-3">
+			                                        <h6 class="text-secondary font-weight-bold m-0">Other Nutrients</h6>
+			                                    </div>
+			                                    <div class="card-body">
+			                                        <h4  class="small font-weight-bold">
+			                                        	Vitamin A
+			                                        	<span id = "vitaminAText" class="float-right">20%</span>
+			                                        </h4>
+			                                        <div class="progress mb-4">
+			                                            <div id = "vitaminAProgressBar" class="progress-bar" style=" background:#0C7020;width: 50%;">
+			                                            </div>
+			                                        </div>
+			                                        
+			                                        <h4 class="small font-weight-bold">
+			                                        	Vitamin C
+			                                        	<span id = "vitaminCText" class="float-right">40%</span>
+			                                        </h4>
+			                                        <div class="progress mb-4">
+			                                            <div id="vitaminCProgressBar" class="progress-bar" style="background:#0C7020;width: 40%;">
+			                                            	
+			                                            </div>
+			                                        </div>
+
+			                                        <h4 class="small font-weight-bold">
+			                                        	Calcium
+			                                        	<span id="calciumText" class="float-right">60%</span></h4>
+			                                        <div class="progress mb-4">
+			                                            <div id="calciumProgressBar" class="progress-bar" style="background:#0C7020;width: 60%;">
+			                                            </div>
+			                                        </div>
+
+			                                        <h4 class="small font-weight-bold">
+			                                        	Iron
+			                                        	<span id="ironText" class="float-right">80%</span></h4>
+			                                        <div class="progress mb-4">
+			                                            <div id="ironProgressBar" class="progress-bar" style="background:#0C7020;width: 60%;">
+			                                            </div>
+			                                        </div>
+
+			                                        <h4 class="small font-weight-bold">
+			                                        	Fiber
+			                                        	<span id="fiberText" class="float-right">90%</span></h4>
+			                                        <div class="progress mb-4">
+			                                            <div id="fiberProgressBar" class="progress-bar" style="background:#0C7020;width: 60%;">
+			                                            </div>
+			                                        </div>
+			                                    </div>
+			                                </div>
+			                            </div>
+			                        </div>
+			                    </div>
+			                </div>
+
+
+	                    </div>
+	                </div>
+	                
+	            </div>
+	        </div>
+	    </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>
+
+
+        <div class="modal fade" id="regenerateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="false">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel1">Are you sure you want to regenerate all meals?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                This action will mean your old meals will be lost.
+              </div>
+              <div class="modal-footer">
+                <button class="btn btn-secondary" data-dismiss="modal">Close</button>
+   
+                	<button id="regenButton" class="btn" style="background: #0C7020;color:white;" type="button" data-toggle="modal" data-target="#regenerateModal">
+	                    <span id="spinner"class="spinner-border spinner-border-sm pb-1" role="status" aria-hidden="true" style="display: none;"></span>
+	                    Regenerate All &nbsp;&nbsp;
+	                    <i class="fa fa-refresh"></i>
+	                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal fade" data-backdrop="static" data-keyboard="false" id="regenerateModalFromChange" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="false" >
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel2">You seem to have updated the number of meals in your meal plan</h5>
+
+              </div>
+              <div class="modal-body">
+                You will need to regenerate a new meal plan to reflect this. Please press the regenerate button below.
+              </div>
+              <div class="modal-footer">   
+                	<button id="regenButtonFromChange" class="btn" style="background: #0C7020;color:white;" type="button" data-target="#regenerateModalFromChange" class="close" data-dismiss="modal">
+	                    <span id="spinner"class="spinner-border spinner-border-sm pb-1" role="status" aria-hidden="true" style="display: none;"></span>
+	                    Regenerate All &nbsp;&nbsp;
+	                    <i class="fa fa-refresh"></i>
+	                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal fade" data-backdrop="static" data-keyboard="false" id="newUserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="false" >
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel3">Looks like you're new here!</h5>
+
+              </div>
+              <div class="modal-body">
+                Press the Generate Meal Plan button below to get your first meal plan! You can regenerate as many as you like.
+              </div>
+              <div class="modal-footer">   
+                	<button id="newUserRegenButton" class="btn" style="background: #0C7020;color:white;" type="button" data-target="#newUserModal" class="close" data-dismiss="modal">
+	                    <span id="spinner"class="spinner-border spinner-border-sm pb-1" role="status" aria-hidden="true" style="display: none;"></span>
+	                    Generate Meal Plan &nbsp;&nbsp;
+	                    <i class="fa fa-refresh"></i>
+	                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+       <!--  <div class="modal fade" data-backdrop="static" data-keyboard="false" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="false" >
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel4"> Oops. Looks like something went wrong. </h5>
+
+              </div>
+              <div class="modal-body">
+                Generating a new meal plan usually solves this. If the issue persists, please contact us at hello@mealmill.co or via www.mealmill.co/contact
+              </div>
+              <div class="modal-footer">   
+                	<button id="errorRegenButton" class="btn" style="background: #0C7020;color:white;" type="button" data-target="#newUserModal" class="close" data-dismiss="modal">
+	                    <span id="spinner"class="spinner-border spinner-border-sm pb-1" role="status" aria-hidden="true" style="display: none;"></span>
+	                    Generate Meal Plan &nbsp;&nbsp;
+	                    <i class="fa fa-refresh"></i>
+	                </button>
+              </div>
+            </div>
+          </div>
+        </div> -->
+
+
+		</body>
+
+
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+	    <script src="{% static 'js/my_meals_bs-init.js' %}"></script>
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
+	    <script src="{% static 'js/my_meals_theme.js' %}"></script>
+
+		<!-- declaring variables to be passed to generare_meals.js -->
+	    <script>
+    	var userCals = {{calories}};
+    	var userNumOfMeals = {{num_of_meals}};
+    	var userNumOfSnacks = {{num_of_snacks}};
+    	var proteinPercent = {{protein_percent}};
+    	var fatPercent = {{fat_percent}};
+    	var carbsPercent = {{carbs_percent}};
+
+    	var $j = jQuery.noConflict();
+		</script>
+
+
+	    <script src="{% static 'js/generate_meals_v2.js'%}"></script>
+	    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+	
+
+
+{% endblock content %}

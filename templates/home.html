@@ -1,19 +1,33 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block title %}
+   Home
+{% endblock title %}
+
 {% block content %}
 
 
   <!-- Page Content -->
 
 <head>
-    <meta class="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>Meal Mill</title>
-    <link rel='stylesheet' href="{% static 'css/style.min.css' %}" />
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    
+    <link rel="stylesheet" href="{% static 'css/home.min.css' %}">
+   <!--  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kaushan+Script">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.css">
+
+
+    <link rel='stylesheet' href="{% static 'css/home_top.min.css' %}" />
 </head>
   
-  <body>
+<body id="page-top">
     <!-- Hero unit -->
     <div class="hero">
         <div class="hero__overlay hero__overlay--gradient"></div>
@@ -26,95 +40,179 @@
                         <div class="d-flex justify-content-center">
                             <p class="hero__text"> Eating Made Simple </p>
                         </div>
-                        <a href="#" class="button button__accent">Register</a>
+                        <a href="{% url 'register' %}" class="button button__accent">Register</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-   
-    <!-- Steps -->
-    <div class="steps landing__section">
+
+    <section id="services">
         <div class="container">
-            <h2>Who can use Evie?</h2>
-            <p>Here's who we can think of, but surely creative people will surprise us.</p>
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="text-uppercase section-heading">Who can use meal mill</h2>
+                    <h3 class="text-muted section-subheading"></h3>
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col-md-4 col-lg-6" data-aos="fade-up" data-aos-duration="750">
+<!--                     <span class="fa-stack fa-4x"><i class="fa fa-circle fa-stack-2x text-primary"></i>
+                        <i class="fa fa-shopping-cart fa-stack-1x fa-inverse"></i>
+                    </span> -->
+                    <img class="rounded-circle img-fluid" width="100" height="100" src="{% static 'images/individual.svg' %}">
+                    <h4 class="section-heading">Individuals</h4>
+                    <p class="text-muted"> Individuals looking to lose or gain weight can use Meal Mill for fully customizable meal plans. Long gone are the days of boring meal plans. With Meal Mill, you can add flavor to your diet and become your own nutritionist.</p>
+                </div>
+                <div class="col-md-4 col-lg-6 offset-lg-0" data-aos="fade-up" data-aos-duration="750" data-aos-delay="200">
+                    <!-- <span class="fa-stack fa-4x"><i class="fa fa-circle fa-stack-2x text-primary"></i><i class="fa fa-sitemap fa-stack-1x fa-inverse"></i></span> -->
+                    <img class="rounded-circle img-fluid" width="100" height="100" src="{% static 'images/coach.svg' %}">
+                    <h4 class="section-heading">Coaches</h4>
+                    <p class="text-muted">Designing customized meal plans for clients can be a time consuming process. Coaches can use Meal Mill to greatly improve the meal planning process. Coaches also have the luxury of over 5000 meals to choose from, all with comprehensive caloric profiles. </p>
+                </div>
+            </div>
         </div>
+    </section>
+    <section id="about" class="bg-light">
         <div class="container">
-            <div class="steps__inner">
-                <div class="step">
-                    <div class="step__media">
-                        <img src="{% static 'images/undraw_designer.svg' %}" class="step__image">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="text-uppercase">How it works</h2>
+                    <h3 class="text-muted section-subheading">Its simple</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <ul class="list-group timeline">
+                        <li class="list-group-item">
+                            <div class="timeline-image"><img class="rounded-circle img-fluid" src="{% static 'images/1.jpg' %}"></div>
+                            <div class="timeline-panel">
+                                <div class="timeline-heading">
+                                    <h4></h4>
+                                    <h4 class="subheading">You tell us some basic information</h4>
+                                </div>
+                                <div class="timeline-body">
+                                    <p class="text-muted" data-aos="fade-right" data-aos-duration="750">We take into account your age, weight, height, gender, activity level and goals</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item timeline-inverted">
+                            <div class="timeline-image"><img class="rounded-circle img-fluid" src="{% static 'images/2.jpg' %}"></div>
+                            <div class="timeline-panel">
+                                <div class="timeline-heading">
+                                    <h4></h4>
+                                    <h4 class="subheading">We calculate your caloric requirements</h4>
+                                </div>
+                                <div class="timeline-body">
+                                    <p class="text-muted" data-aos="fade-left" data-aos-duration="750">Based on the information provided, we create a caloric profile and estimate your caloric needs</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="timeline-image"><img class="rounded-circle img-fluid" src="{% static 'images/3.jpg' %}"></div>
+                            <div class="timeline-panel">
+                                <div class="timeline-heading">
+                                    <h4></h4>
+                                    <h4 class="subheading">Based on your needs, we mill out a meal plan</h4>
+                                </div>
+                                <div class="timeline-body">
+                                    <p data-aos="fade-right" data-aos-duration="750" class="text-muted"> The reccomended meal plans are in line with you goal and are rich in vitamins and minerals</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item timeline-inverted">
+                            <div class="timeline-image"><img class="rounded-circle img-fluid" src="{% static 'images/4.jpg' %}"></div>
+                            <div class="timeline-panel">
+                                <div class="timeline-heading">
+                                    <h4></h4>
+                                    <h4 class="subheading">Not happy with the meal plan? Regenerate as many times as you like!</h4>
+                                </div>
+                                <div class="timeline-body">
+                                    <p class="text-muted" data-aos="fade-left" data-aos-duration="750">That's right, unlimited meal plans appearing instantly </p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="poweredBy">
+        <h2 class="text-uppercase text-center section-heading">Powered By</h2>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6" data-aos="fade" data-aos-duration="750">
+                    <div class="team-member"><img class="rounded-circle mx-auto" src="{% static 'images/spoonacular-logo.svg' %}">
+                        <h4>Spoonacular API</h4>
+                        <p class="text-muted">A food and recipe API that acts as the source of our 5000+ meals.</p>
                     </div>
-                    <h4>Programmers</h4>
-                    <p class="step__text">A landing page for your open source projects. Present your solution, easily create docs.</p>
                 </div>
-                <div class="step">
-                    <div class="step__media">
-                        <img src="{% static 'images/undraw_responsive.svg' %}" class="step__image">
+                <div class="col-sm-6" data-aos="fade" data-aos-duration="750">
+                    <div class="team-member"><img class="rounded-circle mx-auto" src="{% static 'images/rapid_api_logo.png' %}">
+                        <h4>Rapid API</h4>
+                        <p class="text-muted">An API Marketplace that connects our platform to Spoonacular's API.</p>
                     </div>
-                    <h4>Designers</h4>
-                    <p class="step__text">A website for your own freebies. Let the world download and use your artwork.</p>
                 </div>
-                <div class="step">
-                    <div class="step__media">
-                        <img src="{% static 'images/undraw_creation.svg' %}" class="step__image">
+            </div>
+        </div>
+    </section>
+
+    <section id="team" class="bg-light">
+        <h2 class="text-uppercase text-center section-heading">Why choose meal mill</h2>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4" data-aos="slide-right" data-aos-duration="750">
+                    <div class="team-member"><img class="rounded-circle mx-auto" src="{% static 'images/t1.jpg' %}">
+                        <h4>Simple To Use</h4>
+                        <p class="text-muted">Meal Mill makes meal planning simple. Meal Plans that suit your caloric requirements are generated instantly and with ease</p>
                     </div>
-                    <h4>Makers</h4>
-                    <p class="step__text">A great starting point for your web application. Focus on your idea and execution.</p>
+                </div>
+                <div class="col-sm-4" data-aos="slide-up" data-aos-duration="750">
+                    <div class="team-member"><img class="rounded-circle mx-auto" src="{% static 'images/t2.jpg' %}">
+                        <h4>Accurate Data</h4>
+                        <p class="text-muted">Our meal plans contain accurate information regarding both macronutrients and micronutrients </p>
+                    </div>
+                </div>
+                <div class="col-sm-4" data-aos="slide-left" data-aos-duration="750">
+                    <div class="team-member"><img class="rounded-circle mx-auto" src="{% static 'images/t3.jpg' %}">
+                        <h4>Spice Up Your Diet</h4>
+                        <p class="text-muted">Our access to over 5000 meals means you'll never see the same meal again! Make sure to save the ones you like!</p>
+                    </div>
                 </div>
             </div>
+
+
+            <div class="row" style="justify-content: center;">
+                <a href="{% url 'register' %}" class="button button__accent2">Register Now!</a>
+
+            </div>
         </div>
-    </div>
-    <!-- Expanded sections -->
-    <div class="expanded landing__section">
+    </section>
+    <footer>
         <div class="container">
-            <div class="expanded__inner">
-                <div class="expanded__media">
-                    <img src="{% static 'images/undraw_browser.svg' %}" class="expanded__image">
-                </div>
-                <div class="expanded__content">
-                    <h2 class="expanded__title">Natural styling with almost nothing to learn</h2>
-                    <p class="expanded__text">Evie brings you the pages you'll need and the structure to create your own, without a learning curve. It is minimal and mostly styles plain elements. There are only a few classes you'll need to know but nothing to disrupt your preferred coding style.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="expanded landing__section">
-        <div class="container">
-            <div class="expanded__inner">
-                <div class="expanded__media">
-                    <img src="{% static 'images/undraw_frameworks.svg' %}" class="expanded__image">
-                </div>
-                <div class="expanded__content">
-                    <h2 class="expanded__title">Framework agnostic. Your front-end setup, your choice.</h2>
-                    <p class="expanded__text">Evie has zero dependencies and uses vanilla JavaScript for a few functions with minimal footprint. You can use React, Vue, Angular, jQuery or whatever you prefer.</p>
+            <div class="row">
+                <div class="col-md-3"><span class="copyright"></span></div>
+                <div class="col-md-6"><span class="copyright">Made with ♥ by Nagaty. Designed with ♥ by Ali. &#169;</span></div>
+                <div class="col-md-3">
+                    <ul class="list-inline quicklinks">
+                        <li class="list-inline-item"><a href="#"></a></li>
+                        <li class="list-inline-item"><a href="#"></a></li>
+                    </ul>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="expanded landing__section">
-        <div class="container">
-            <div class="expanded__inner">
-                <div class="expanded__media">
-                    <img src="{% static 'images/together.svg' %}" class="expanded__image">
-                </div>
-                <div class="expanded__content">
-                    <h2 class="expanded__title">Ready for production or rapid prototyping</h2>
-                    <p class="expanded__text">Landing, authentication and a few other pages to select from, despite the small size. Tested on production at unDraw with amazing speeds and unopinionated on how to structure your project. We really hope you'll find it awesome and useful!</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Call To Action -->
-    <div class="cta cta--reverse">
-        <div class="container">
-            <div class="cta__inner">
-                <h2 class="cta__title">Get Started Now</h2>
-                <p class="cta__sub cta__sub--center">Grab the production version and begin your project instantly.</p>
-                <a href="{% url 'register' %}" class="button button__accent">Register</a>
-            </div>
-        </div>
-    </div>
+        <div class="col"><span class="copyright"></span></div>
+    </footer>
+
+    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src=" {% static 'js/bs-init.js'%}"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <script type="text/javascript" src=" {% static 'js/agency.js'%}"></script>
 </body>
 
 

@@ -4,29 +4,237 @@
 
 {% load static %}
 
+{% block title %}
+    Profile
+{% endblock title %}
+
 
 {% block content %}
+<link rel="stylesheet" href="{% static 'css/button_hover.css' %}">
 
-<link rel="stylesheet" type="text/css" href="{% static 'css/profile_style.css' %}">
+<body id="page-top">
 
-  <div class="container pt-5">
+    <div id="wrapper">
+        <div class="d-flex flex-column" id="content-wrapper">
+            <div id="content">
+                <div class="container-fluid">
+                    <h3 class="text-dark mb-4">My Profile</h3>                                     
+                    <div class="row mb-3">
+                        <div class="col-lg-4">
+                            <div class="card mb-3">
+                                <div class="card-body text-center shadow"><img class="rounded-circle mb-3 mt-4" src="{{ user.profile.image.url }}" width="160" height="160">
+                                </div>
+                            </div>
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="font-weight-bold m-0" style="color: #0C7020;">Caloric Information</h6>
+                                </div>
+                                <div class="card-body">
+                                    <h4 class="small font-weight-bold">Carbs<span class="float-right">{{ user.mealsprofile.carbs_percent }}%</span></h4>
+                                    <div class="progress progress-sm mb-3">
+                                        <div class="progress-bar" style=" background:#0C7020; width: {{ user.mealsprofile.carbs_percent }}%;"><span class="sr-only">{{ user.mealsprofile.carbs_percent }}</span></div>
+                                    </div>
+                                    <h4 class="small font-weight-bold">Protien<span class="float-right">{{ user.mealsprofile.protein_percent }}%</span></h4>
+                                    <div class="progress progress-sm mb-3">
+                                        <div class="progress-bar" style="background:#0C7020;width: {{ user.mealsprofile.protein_percent }}%;"><span class="sr-only">{{ user.mealsprofile.protein_percent }}%</span></div>
+                                    </div>
+                                    <h4 class="small font-weight-bold">Fat<span class="float-right">{{ user.mealsprofile.fat_percent }}%</span></h4>
+                                    <div class="progress progress-sm mb-3">
+                                        <div class="progress-bar" style="background:#0C7020; width: {{ user.mealsprofile.fat_percent }}%;"><span class="sr-only">{{ user.mealsprofile.fat_percent }}%</span></div>
+                                    </div>
+                                    <h4 class="small font-weight-bold"></h4>
+                                    <h4 class="small font-weight-bold">Total Calories<span class="float-right">{{ user.mealsprofile.calories}} calories</span></h4>
+                                    <div class="progress progress-sm mb-3">
+                                        <div class="progress-bar" style=" background:#0C7020; width: 100%;"><span class="sr-only">100%</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="row">
+                                <div class="col">
+                                    <div id="messagesDiv">
+                                        {% if messages %}
+                                            {% for message in messages %}
 
-  	<div class="content-section">
-        <div class="media">
-          <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
-          <div class="media-body">
-            <h2 class="account-heading">{{ user.username }}</h2>
-            <p class="text-secondary">{{ user.email }}</p>
-            <p class="text-secondary">{{ user.profile.weight }}</p>
-            <p class="text-secondary">{{ user.profile.activity_level }}</p>
-            <p class="text-secondary">{{ user.profile.gender }}</p>
-            <p class="text-secondary">{{ user.profile.age }}</p>
 
-          </div>
-        </div>
-      </div>
+                                                <div class="alert alert-{{ message.tags }}"> 
+                                                    {{ message }}
+                                                </div>
 
-  </div>
+
+                                            {% endfor %}
+                                        {% endif %}  
+                                    </div> 
+                                    <div class="card shadow mb-3">
+                                        <div class="card-header py-3">
+                                            <p class="m-0 font-weight-bold" style="color: #0C7020;">Profile Information</p>
+                                        </div>
+                                        <div class="card-body">
+
+                                            <form method="POST" enctype="multipart/form-data" id="profileForm">
+                                                {% csrf_token %}
+                                                <div class="form-row">
+
+                                                    <div class="col-md-6">
+                                                        <label for="usernameInput">Username</label>
+                                                        <input type="number" class="form-control" id="carbsInput" placeholder = "{{username}}"readonly>
+
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label for="usernameInput">Email</label>
+                                                        <input type="number" class="form-control" id="carbsInput" placeholder = "{{email}}" readonly>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="form-row">
+                                                    <div class="col-sm-10 col-lg-3">
+                                                        {{ p_form.weight | as_crispy_field }}
+                                                    </div>
+                                                    <div class="col-sm-2 col-lg-3">
+                                                        {{ p_form.preferred_units | as_crispy_field }}
+                                                    </div>
+                                                    <div class="col-md-12 col-lg-6">
+                                                        {{ p_form.activity_level | as_crispy_field }}
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="col-sm-12 col-md-6">
+                                                        {{ p_form.age | as_crispy_field }}
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-6">
+                                                        {{ p_form.goal | as_crispy_field }}
+                                                    </div>
+                                                </div>
+
+                                            </form>
+                                                <div class="form-group text-right">
+                                                    <button class="btn btn-sm" data-toggle="modal" data-target="#profileModal">Update Profile</button>
+                                                </div>                                            
+                                        </div>
+                                    </div>
+                                    <div class="card shadow">
+                                        <div class="card-header py-3">
+                                            <p class="m-0 font-weight-bold" style="color: #0C7020;">Meal Information</p>
+                                        </div>
+                                        <div class="card-body">
+                                            <div id = "macrosError" class="alert alert-danger" style="display: none"> 
+                                                <h6 style="color: #ad3e36"> Your carbs, protein and fat percentages must add up to 100%! </h6>
+                                            </div>
+                                            
+                                            <form method="POST" enctype="multipart/form-data" id="mealsForm" onsubmit="return validateForm()" name="mealsForm">
+                                                {% csrf_token %}
+                                                <div class="form-row">
+                                                    <div class="col-sm-12 col-md-6">
+                                                        {{ m_form.calories | as_crispy_field }}
+                                                        
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-6">
+                                                        {{ m_form.carbs_percent | as_crispy_field }}
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="col-sm-12 col-md-6">
+                                                        {{ m_form.protein_percent | as_crispy_field }}
+                                                        
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-6">
+                                                        {{ m_form.fat_percent | as_crispy_field }}
+                                                    </div>
+                                                </div>
+                                                 <div class="form-row">
+                                                    <div class="col-sm-12 col-md-6">
+                                                        {{ m_form.num_of_meals | as_crispy_field }}
+                                                        
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-6">
+                                                        {{ m_form.num_of_snacks | as_crispy_field }}
+                                                    </div>
+                                                </div>
+                                            </form>
+                                                <div class="form-group text-right">
+                                                    <button class="btn btn-sm" id="mealsForm" data-toggle="modal" data-target="#mealsModal">Update Meal Settings</button>
+                                                </div>                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card shadow mb-5"></div>
+                </div>
+            </div>
+
+
+            <!-- Confirm Modals (the popups that appear when updating profile page) -->
+            <div class="modal fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="false">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to update your profile information?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    This will save any changes made to the Profile Information section only.
+                  </div>
+                  <div class="modal-footer">
+                    <button class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+                    <button class="btn btn-sm" style="background: #0C7020;color:white;" name="prof_submit" type="submit" form="profileForm">Save changes</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="modal fade" id="mealsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="false">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to update your meals information?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    This will mean your current meal plan will be lost. You will need to regenerate a new one. This action cannot be undone.
+                  </div>
+                  <div class="modal-footer">
+                    <button class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+                    <button class="btn btn-sm" style="background: #0C7020;color:white;" name="meals_sub" type="submit" form="mealsForm">Save changes</button>
+                  </div>
+                </div>
+              </div>
+            </div>            
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
+
+    <script type="text/javascript">
+        function validateForm() {
+
+            $('#mealsModal').modal('hide');
+            $('.modal-backdrop').remove();
+
+            var carbs = document.forms["mealsForm"]["carbs_percent"].value;
+            var fat = document.forms["mealsForm"]["fat_percent"].value;
+            var protein = document.forms["mealsForm"]["protein_percent"].value;
+
+
+            if(parseInt(carbs) + parseInt(protein) + parseInt(fat) != 100){
+                document.getElementById("macrosError").style.display = "block";
+                return false;
+            }
+        }
+        
+        
+
+    </script>
+</body>
+
+
+
+
 
 {% endblock content %}
 

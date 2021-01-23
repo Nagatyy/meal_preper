@@ -5,7 +5,6 @@ $(function () {
         } else {
             $('.navbar').removeClass('active');
         }
-        console.log("Hello");
 
     });
 });

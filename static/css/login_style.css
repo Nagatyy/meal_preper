@@ -1,12 +1,13 @@
 {% load static %}
+@import url("https://fonts.googleapis.com/css?family=Lato:400");
 
 :root {
         --body_bg:#635efa;
         --form_bg: #ffffff;
-        --input_bg: #E5E5E5;
-        --input_hover:#eaeaea;
-        --submit_bg: #1FCC44;
-        --submit_hover: #00FA9A;
+        --input_bg: rgba(12,112,32,1);
+        --input_hover:rgba(61,186,88,1);
+        --submit_bg: rgba(12,112,32,1);
+        --submit_hover: rgba(61,186,88,1);
         --icon_color:#6b6b6b;
     }
 
@@ -19,22 +20,25 @@
 
 body {
         /* make the body full height*/
-        height: 100vh;
+        height: auto;
         /* set our custom font */
         font-family: 'Roboto',
         sans-serif;
         /* create a linear gradient*/
-        background: linear-gradient(0deg, #9cff98 0%, rgba(61,186,88,1) 100%);
+        background: rgba(12,112,32,1);
+        /*background: linear-gradient(0deg, rgba(61,186,88,1) 0%, rgba(12,112,32,1) 100%);*/
         display:flex;
+        margin-bottom: 5%;
+        /*overflow: hidden;*/
 }
 
 #form_wrapper {
         width: 90%;
-        height: 90%;
+        height: auto;
         /* this will help us center it*/
         margin:auto;
         background-color: var(--form_bg);
-        border-radius: 8px;
+        border-radius: 3px;
         /* make it a grid container*/
         display: grid;
         /* with two columns of same width*/
@@ -43,8 +47,13 @@ body {
         grid-gap: 5vw;
         /* add some padding around */
         padding: 10vh 15px;
-        margin-top: 2%;
+        margin-top: 5%;
         margin-bottom: 2%;
+        /*box-shadow: 0 0 10px;*/
+
+        position: relative;
+        height: 100%;
+
 
 }
 
@@ -56,8 +65,8 @@ body {
     }
 
     #form_left img {
-        width: 200px;
-        height: 200px;
+        width: 400px;
+        height: 400px;
     }
 
 
@@ -126,6 +135,7 @@ body {
 
      h1,
     span {
+        font-family: 'Lato';
         text-align: center;
     }
 
@@ -153,7 +163,7 @@ body {
 
 
     /* make it responsive */
-    @media screen and (max-width:768px) {
+    @media screen and (max-width:1000px) {
 
         /* make the layout  a single column and add some margin to the wrapper */
         #form_wrapper {
@@ -161,7 +171,13 @@ body {
             margin-left: 10px;
             margin-right: 10px;
             height: auto;
+            margin-top: 10%;
         }
+
+/*        #main {
+            pa
+        }*/
+
         /* on small screen we don't display the image */
         #form_left {
             display: none;

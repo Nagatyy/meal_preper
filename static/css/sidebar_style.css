@@ -24,27 +24,6 @@ a:focus {
     transition: all 0.3s;
 }
 
-.navbar {
-    padding: 15px 10px;
-    background: #fff;
-    border: none;
-    border-radius: 0;
-    margin-bottom: 40px;
-    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-.navbar-btn {
-    box-shadow: none;
-    outline: none !important;
-    border: none;
-}
-
-.line {
-    width: 100%;
-    height: 1px;
-    border-bottom: 1px dashed #ddd;
-    margin: 40px 0;
-}
 
 i,
 span {
@@ -63,7 +42,8 @@ span {
 #sidebar {
     min-width: 250px;
     max-width: 250px;
-    background: linear-gradient(0deg, #9cff98 0%, rgba(61,186,88,1) 100%);;
+    background: rgb(61,186,88);
+    background: linear-gradient(0deg, rgba(61,186,88,1) 0%, rgba(12,112,32,1) 100%);
     color: #fff;
     transition: all 0.3s;
 }
@@ -81,6 +61,7 @@ span {
 
 #sidebar.active .sidebar-header strong {
     display: block;
+    position: center;
 }
 
 #sidebar ul li a {
@@ -115,17 +96,19 @@ span {
 
 #sidebar .sidebar-header {
     padding: 20px;
-    background: #3dba58;
+    background: rgb(61,186,88);
+    background: rgba(12,112,32,1);
 }
 
 #sidebar .sidebar-header strong {
     display: none;
     font-size: 1.8em;
+    position: center;
 }
 
 #sidebar ul.components {
     padding: 20px 0;
-    border-bottom: 1px solid #47748b;
+    /*border-bottom: 1px solid #0c7020;*/
 }
 
 #sidebar ul li a {
@@ -135,7 +118,7 @@ span {
 }
 
 #sidebar ul li a:hover {
-    color: #3dba58;
+    color: #0c7020;
     background: #fff;
 }
 
@@ -146,7 +129,7 @@ span {
 #sidebar ul li.active>a,
 a[aria-expanded="true"] {
     color: #fff;
-    background: #3dba58;
+    background: #0c7020;
 }
 
 a[data-toggle="collapse"] {
@@ -164,7 +147,7 @@ a[data-toggle="collapse"] {
 ul ul a {
     font-size: 0.9em !important;
     padding-left: 30px !important;
-    background: #3dba58;
+    background: #0c7020;
 }
 
 ul.CTAs {
@@ -186,9 +169,10 @@ a.download {
 
 a.article,
 a.article:hover {
-    background: #3dba58 !important;
+    background: #0c7020 !important;
     color: #fff !important;
 }
+
 
 /* ---------------------------------------------------
     CONTENT STYLE
@@ -229,6 +213,7 @@ a.article:hover {
     }
     #sidebar .sidebar-header strong {
         display: block;
+        position: center;
     }
     #sidebar ul li a {
         padding: 20px 10px;
@@ -248,8 +233,5 @@ a.article:hover {
     }
     #sidebar {
         margin-left: 0;
-    }
-    #sidebarCollapse span {
-        display: none;
     }
 }

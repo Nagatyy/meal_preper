@@ -1,0 +1,225 @@
+{% extends 'logged_in_base.html' %}
+
+{% load static %}
+
+{% block title %}
+	Single Meal
+{% endblock title %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/meals.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/generate_single.css' %}">
+<link rel="stylesheet" href="{% static 'css/meals_mobile.css' %}">
+<link rel="stylesheet" href="{% static 'css/sweet_alert.css' %}">
+<link rel="stylesheet" href="{% static 'css/button_hover.css' %}">
+<link rel="stylesheet" href="{% static 'css/loading.css' %}">
+
+<div id="loader">
+	<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+</div>
+
+<body id="page-top">
+	    <div id="wrapper">
+	        <div class="d-flex flex-column" id="content-wrapper">
+	            <div id="content">
+	                <div class="container-fluid">
+
+	                    <div class="d-sm-flex justify-content-between align-items-center mb-4">
+	                        <h3 class="text-secondary mb-0">Single Meal Generator</h3>
+	                    </div>
+
+
+
+	                    <div class="row">
+	                        <div class="col-lg-6 col-xl-8">
+
+
+
+								<div class="card shadow mb-4">
+	                                <div class="card-header d-flex justify-content-between align-items-center">
+	                                    <h6 class="text-secondary font-weight-bold m-0" style="color: #3dba12;"> Enter Meal Information </h6>
+	                                   
+	                                </div>
+
+	                                <div class="card-body">
+	                                	    <div id = "macrosError" class="alert alert-danger" style="display: none"> 
+                                                <h6 style="color: #ad3e36"> Your carbs, protein and fat percentages must add up to 100%! </h6>
+                                            </div>
+                                            <div id = "notFoundError" class="alert alert-danger" style="display: none"> 
+                                                <h6 style="color: #ad3e36"> Oops :( We couldn't find you a meal. Try chaging your contraints. </h6>
+                                            </div>
+	                                	<form id="macrosForm" name="macrosForm" onsubmit="return false">
+										  <div class="row">
+										    <div class="form-group col-md-12">
+										      <label for="caloriesInput">Calories*</label>
+										      <input type="number" class="form-control" id="caloriesInput" placeholder="Enter total calories" min="1" max="1500" required>
+										    </div>
+										  </div>
+
+										  <div class="row">
+
+										  	<div class="col-md-4 mobileColumn" style="text-align: center;">
+										     	<button type="button" class="btn" onclick="showCarbs()"> Specify Carbs</button>
+										    </div>
+										    <div class="col-md-4 mobileColumn" style="text-align: center;" onclick="showProtein()">
+										    	<button type="button" class="btn"> Specify Protein</button>
+										    </div>
+										    <div class="col-md-4 mobileColumn" style="text-align: center;" onclick="showFats()">
+										      	<button type="button" class="btn">Specify Fats</button>
+										    </div>
+										  </div>
+
+										  <hr>
+										  
+										  <div class="row">
+										    <div id="carbsDiv" class="form-group col-md-4" style="text-align: center; display: none">
+										      <label for="carbsInput">Carbs %</label>
+										      <input type="number" class="form-control" id="carbsInput" placeholder="Enter carbs %" min="1" max="100">
+										    </div>
+										    <div id="proteinDiv" class="form-group col-md-4" style="text-align: center; display: none">
+										      <label for="proteinInput">Protein %</label>
+										      <input type="number" class="form-control" id="proteinInput" placeholder="Enter protein %" min="1" max="100">
+										    </div>
+										    <div id="fatDiv" class="form-group col-md-4" style="text-align: center; display: none">
+										      <label for="fatInput">Fat %</label>
+										      <input type="number" class="form-control" id="fatInput" placeholder="Enter fat %" min="1" max="100">
+										    </div>
+										  </div>
+										 
+										  <button id="generateButton" type="submit" class="btn btn-block">
+										  Generate New Meal
+										</button>
+										</form> 
+										<br>
+										<div class="text-center">
+										  <div id="spinner" class="spinner-border text-secondary" role="status" style="display: none;">
+										  </div>
+										</div>
+	                                	
+
+
+	                                </div>
+	                            </div>
+
+	                            <div  class="mealInfo">
+
+	                            {% for i in range %}
+
+  									{% include 'meal_plan/meal.html' %}
+
+  								{% endfor %}
+
+  								</div>
+
+	                        </div>
+	                        
+	                        <div class="col-lg-6 col-xl-4 mealInfo">
+	                            <div class="card shadow mb-4">
+	                                <div class="card-header d-flex justify-content-between align-items-center">
+	                                    <h6 class="text-secondary font-weight-bold m-0">Caloric Breakdown</h6>
+	                                </div>
+	                                <div class="card-body">
+	                                    <div class="chart-area">
+	                                    	<canvas id="pieChart"></canvas>
+	                                    </div>
+	                          
+	                            	</div>
+	                       		</div>
+	                        
+	                        <div class="row mealInfo">
+			                    <div class="col">
+			                        <div class="row">
+			                            <div class="col">
+			                                <div class="card shadow mb-4">
+			                                    <div class="card-header py-3">
+			                                        <h6 class="text-secondary font-weight-bold m-0">Macronutrients</h6>
+			                                    </div>
+			                                    <div class="card-body">
+			                                        <h4  class="small font-weight-bold">
+			                                        	Carbs
+			                                        	<span id = "carbsText" class="float-right">20g</span>
+			                                        </h4>
+			                                        <div class="progress mb-4">
+			                                            <div id = "carbsProgressBar" class="progress-bar" style="background:#15AEC0;width: 50%;">
+			                                            </div>
+			                                        </div>
+			                                        
+			                                        <h4 class="small font-weight-bold">Protein
+			                                        	<span id = "proteinText" class="float-right">40g</span>
+			                                        </h4>
+			                                        <div class="progress mb-4">
+			                                            <div id="proteinProgressBar" class="progress-bar" style="background:#0ED7EF;width: 40%;">
+			                                            	
+			                                            </div>
+			                                        </div>
+			                                        <h4 class="small font-weight-bold">Fat<span id="fatText" class="float-right">60g</span></h4>
+			                                        <div class="progress mb-4">
+			                                            <div id="fatProgressBar" class="progress-bar" style="background:#549198;width: 60%;">
+			                                            </div>
+			                                        </div>
+			                                        
+			                                    </div>
+			                                </div>
+			                            </div>
+			                        </div>
+			                    </div>
+			                </div>
+
+
+	                    </div>
+	                </div>
+	                
+	            </div>
+	        </div>
+	    </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>
+
+
+
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
+	    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+		
+		<script src="{% static 'js/generate_single_meal.js'%}"></script>
+	    <script>
+    		function showCarbs(){
+    			var carbsDiv = document.getElementById("carbsDiv");
+    			var carbsInput = document.getElementById("carbsInput");
+
+				if(carbsDiv.style.display === "none")
+					carbsDiv.style.display = "initial";
+				else {
+					carbsDiv.style.display = "none";
+					carbsInput.value = ""
+				}
+			}
+			function showProtein(){
+    			var proteinDiv = document.getElementById("proteinDiv");
+    			var proteinInput = document.getElementById("proteinInput");
+
+				if(proteinDiv.style.display === "none")
+					proteinDiv.style.display = "initial";
+				else {
+					proteinDiv.style.display = "none";
+					proteinInput.value = "";
+				}
+			}
+			function showFats(){
+    			var fatDiv = document.getElementById("fatDiv");
+    			var fatInput = document.getElementById("fatInput");
+
+				if(fatDiv.style.display === "none")
+					fatDiv.style.display = "initial";
+				else {
+					fatDiv.style.display = "none";
+					fatInput.value = "";
+				}
+			}
+		</script>
+
+
+	</body>
+
+{% endblock content %}

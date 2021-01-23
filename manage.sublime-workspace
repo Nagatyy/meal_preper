@@ -1,0 +1,418 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"db",
+				"db_test2"
+			],
+			[
+				"writ",
+				"write_to_database"
+			],
+			[
+				"logi",
+				"login_required"
+			],
+			[
+				"is",
+				"is_new_user"
+			],
+			[
+				"mar",
+				"margin\tproperty"
+			],
+			[
+				"p",
+				"padding-top\tproperty"
+			],
+			[
+				"Prof",
+				"ProfileMacrosForm"
+			],
+			[
+				"mod",
+				"models"
+			],
+			[
+				"reg",
+				"registration_complete_style"
+			],
+			[
+				"reig",
+				"registration_complete"
+			],
+			[
+				"mea",
+				"meal_plan_view"
+			],
+			[
+				"di",
+				"div\tTag"
+			],
+			[
+				"Mode",
+				"ModelForm"
+			],
+			[
+				"re",
+				"request"
+			],
+			[
+				"User",
+				"UserUpdateForm"
+			],
+			[
+				"Mod",
+				"ModelForm"
+			],
+			[
+				"bac",
+				"background-color\tproperty"
+			],
+			[
+				"ba",
+				"background-color\tproperty"
+			],
+			[
+				"pro",
+				"product_detauk_view"
+			],
+			[
+				"my",
+				"my_dict"
+			],
+			[
+				"con",
+				"contact"
+			],
+			[
+				"cont",
+				"contact_view"
+			],
+			[
+				"ab",
+				"about"
+			],
+			[
+				"abo",
+				"about_view"
+			],
+			[
+				"ht",
+				"HttpResponse"
+			],
+			[
+				"def",
+				"default"
+			],
+			[
+				"o",
+				"op"
+			],
+			[
+				"num",
+				"numerical-literal"
+			],
+			[
+				"nu",
+				"numerical-literal"
+			],
+			[
+				"ema",
+				"emailAdds"
+			],
+			[
+				"em",
+				"emailAdds"
+			],
+			[
+				"ac",
+				"acronymn"
+			],
+			[
+				"N",
+				"numString"
+			],
+			[
+				"c",
+				"current"
+			],
+			[
+				"f",
+				"failList"
+			],
+			[
+				"od",
+				"oddSum"
+			],
+			[
+				"even",
+				"evenSum"
+			],
+			[
+				"eve",
+				"evenSum"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 175.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/mohamednagaty/Desktop/jobs/Internship/database.py",
+		"/Applications/MAMP/bin/mamp/index.php",
+		"/Users/mohamednagaty/Desktop/Online_Courses/Django",
+		"/Users/mohamednagaty/Desktop/Online_Courses/django_projects/MealPrepr/src/users/templates/users/profile.html",
+		"/Users/mohamednagaty/Desktop/Online_Courses/django_projects/MealPrepr/src/templates/base.html",
+		"/Users/mohamednagaty/Desktop/Online_Courses/django_projects/MealPrepr/src/MealPrepr/settings.py",
+		"/Users/mohamednagaty/Desktop/Online_Courses/django_projects/MealPrepr/src/static/css/range_slide.css",
+		"/Users/mohamednagaty/Desktop/Online_Courses/django_projects/MealPrepr/src/users/templates/users/login.html",
+		"/Users/mohamednagaty/Desktop/Online_Courses/django_projects/MealPrepr/src/meal_plan/views.py",
+		"/Users/mohamednagaty/Desktop/Online_Courses/cryptoSwing/src/Crypto.java",
+		"/Users/mohamednagaty/Desktop/Online_Courses/django_projects/MealPrepr/src/static/images/t1.jpg",
+		"/Users/mohamednagaty/Desktop/Online_Courses/django_projects/MealPrepr/src/templates/home.html",
+		"/Users/mohamednagaty/Desktop/Online_Courses/django_projects/MealPrepr/src/static/css/registration_complete_style.css",
+		"/Users/mohamednagaty/Desktop/Online_Courses/django_projects/MealPrepr/src/users/admin.py",
+		"/Users/mohamednagaty/Desktop/Online_Courses/django_projects/MealPrepr/src/meal_plan/templates/meal_plan/meals_page.html",
+		"/Users/mohamednagaty/Desktop/Online_Courses/bs_work/assets/bootstrap/css/bootstrap.min.css",
+		"/Users/mohamednagaty/Desktop/Online_Courses/django_projects/MealPrepr/src/static/css/meals.min.css",
+		"/Users/mohamednagaty/Desktop/Online_Courses/django_projects/MealPrepr/src/templates/logged_in_base.html",
+		"/Users/mohamednagaty/Desktop/Online_Courses/bs_work/index.html",
+		"/Users/mohamednagaty/Desktop/Online_Courses/django_projects/MealPrepr/src/static/css/register_style.css",
+		"/Users/mohamednagaty/Desktop/Online_Courses/django_projects/index.html",
+		"/Users/mohamednagaty/Desktop/Online_Courses/django_projects/MealPrepr/src/static/css/bootstrap.min.css",
+		"/Users/mohamednagaty/Desktop/Online_Courses/django_projects/MealPrepr/src/static/css/style.min.css",
+		"/Users/mohamednagaty/Desktop/Online_Courses/django_projects/MealPrepr/src/users/views.py",
+		"/Users/mohamednagaty/Desktop/Online_Courses/django_projects/MealPrepr/src/users/templates/users/profileTest.html",
+		"/Users/mohamednagaty/Desktop/Online_Courses/django_projects/MealPrepr/src/static/js/navbar.js",
+		"/Users/mohamednagaty/Desktop/Online_Courses/django_projects/MealPrepr/src/users/templates/users/register.html",
+		"/Users/mohamednagaty/Desktop/Online_Courses/django_projects/MealPrepr/src/users/models.py",
+		"/Users/mohamednagaty/Desktop/Online_Courses/django_projects/MealPrepr/src/users/forms.py",
+		"/Users/mohamednagaty/Desktop/Online_Courses/django_projects/MealPrepr/src/static/css/profile_style.css",
+		"/Users/mohamednagaty/Desktop/Online_Courses/django_projects/profile.html",
+		"/Users/mohamednagaty/Desktop/index.html",
+		"/Users/mohamednagaty/Desktop/Online_Courses/django_projects/MealPrepr/src/static/css/sidebar_style.css",
+		"/Users/mohamednagaty/Desktop/Online_Courses/django_projects/MealPrepr/src/meal_plan/models.py",
+		"/Users/mohamednagaty/Desktop/Online_Courses/django_projects/MealPrepr/src/users/templates/users/registration_complete.html",
+		"/Users/mohamednagaty/Desktop/Online_Courses/django_projects/MealPrepr/src/static/css/login_style.css",
+		"/Users/mohamednagaty/Desktop/Online_Courses/django_projects/MealPrepr/src/static/css/navbar_style.css",
+		"/Users/mohamednagaty/Desktop/Online_Courses/django_projects/MealPrepr/src/meal_plan/admin.py",
+		"/Users/mohamednagaty/Desktop/Online_Courses/django_projects/MealPrepr/src/static/js/jquery.js",
+		"/Users/mohamednagaty/dev/Environmnets/django/django_env/src/templates/about.html",
+		"/Users/mohamednagaty/dev/Environmnets/django/django_env/src/products/views.py",
+		"/Users/mohamednagaty/dev/Environmnets/django/django_env/src/templates/product/detail.html",
+		"/Users/mohamednagaty/dev/Environmnets/django/django_env/src/project1/urls.py",
+		"/Users/mohamednagaty/dev/Environmnets/django/django_env/src/templates/navbar.html",
+		"/Users/mohamednagaty/dev/Environmnets/django/django_env/src/templates/base.html",
+		"/Users/mohamednagaty/dev/Environmnets/django/django_env/src/pages/views.py",
+		"/Users/mohamednagaty/dev/Environmnets/django/django_env/learn_django",
+		"/Users/mohamednagaty/dev/Environmnets/django/django_env/src/templates/home.html",
+		"/Users/mohamednagaty/dev/Environmnets/django/django_env/src/templates/contact.html",
+		"/Users/mohamednagaty/Desktop/dashlane_restore.txt",
+		"/Users/mohamednagaty/Desktop/dashlane_auth.txt",
+		"/Users/mohamednagaty/dev/Environmnets/django/django_env/src/products/models.py",
+		"/Users/mohamednagaty/dev/Environmnets/django/django_env/src/project1/settings.py",
+		"/Users/mohamednagaty/dev/Environmnets/django/django_env/src/products/admin.py",
+		"/Users/mohamednagaty/dev/Environmnets/django/django_env/src/cart/models.py",
+		"/Users/mohamednagaty/Desktop/S2020/ProgLangs/PythonCode(LABS)/practice/practice.py",
+		"/Users/mohamednagaty/Desktop/S2020/ProgLangs/PythonCode(LABS)/prac/prac.py",
+		"/Users/mohamednagaty/Desktop/S2020/ProgLangs/PythonCode(LABS)/pr2/pr.py",
+		"/Users/mohamednagaty/Desktop/k.txt.gpg",
+		"/Users/mohamednagaty/Desktop/k.txt",
+		"/Users/mohamednagaty/Desktop/S2020/Networks/Recored_lectures_link.txt",
+		"/Users/mohamednagaty/Desktop/S2020/ProgLangs/PythonTutorials/09+RegularExpressions.py",
+		"/Users/mohamednagaty/Desktop/S2020/ProgLangs/PrologParser/PrologParser.py",
+		"/Users/mohamednagaty/Downloads/PrologParser-master 3/PrologParser.py",
+		"/Users/mohamednagaty/Desktop/S2020/ProgLangs/PL Yousuf prevs/Parser.py",
+		"/Users/mohamednagaty/Desktop/S2020/DesignAndAnalysis/D_and_L_HW2/D_and_L_HW2/Graph.hpp",
+		"/Users/mohamednagaty/Desktop/S2020/DesignAndAnalysis/72311_HW1 2/main.cpp",
+		"/Users/mohamednagaty/Desktop/S2020/DesignAndAnalysis/EXTRA/counting_sort.py",
+		"/Users/mohamednagaty/Desktop/S2020/ProgLangs/HW_Sols/passwords.txt",
+		"/Users/mohamednagaty/Desktop/S2020/ProgLangs/PythonTutorials/03+FlowControlAndRepetition.py",
+		"/Users/mohamednagaty/Desktop/S2020/ProgLangs/PythonTutorials/02+SequencesAndCollections.py",
+		"/Users/mohamednagaty/Desktop/S2020/ProgLangs/PythonTutorials/01+IntroductionToPython.py",
+		"/Users/mohamednagaty/Desktop/S2020/ProgLangs/PL Yousuf prevs/Project/Parser.py",
+		"/Users/mohamednagaty/Desktop/S2020/ProgLangs/PythonCode(LABS)/LAB8/L8Q1.py",
+		"/Users/mohamednagaty/Downloads/exerlog-master/AndroidStudioProjects/WorkoutDiary/app/src/main/java/com/example/kalle/workoutdiary/MyTextField.java",
+		"/Users/mohamednagaty/Desktop/S2020/ProgLangs/PythonCode(LABS)/LAB8/L8Q2.py",
+		"/Users/mohamednagaty/Desktop/test.py",
+		"/Users/mohamednagaty/Downloads/COVID-19-trends-master/run_countries.py",
+		"/Users/mohamednagaty/Downloads/counting_sort.txt",
+		"/Users/mohamednagaty/Downloads/lockdown.txt",
+		"/Users/mohamednagaty/VirtualBox VMs/Mohamed_s PC/Mohamed_s PC.vbox",
+		"/Users/mohamednagaty/Desktop/S2020/ProgLangs/PythonCode/LAB5/Polygon.py",
+		"/Users/mohamednagaty/Desktop/S2020/ProgLangs/PythonCode/Lab3/L3Q3.py",
+		"/Users/mohamednagaty/Desktop/S2020/ProgLangs/PythonTutorials/07+HigherOrderFunctions.py",
+		"/Users/mohamednagaty/Downloads/PythonTutorials/07+HigherOrderFunctions.py",
+		"/Users/mohamednagaty/Desktop/S2020/ProgLangs/PythonClassTutorial/07-HigherOrderFunctions.py",
+		"/Users/mohamednagaty/Desktop/S2020/ProgLangs/PythonCode/test.py",
+		"/Users/mohamednagaty/Desktop/S2020/ProgLangs/02-SequencesAndCollections.py",
+		"/Users/mohamednagaty/Desktop/S2020/ProgLangs/01-IntroductionToPython.py",
+		"/Users/mohamednagaty/Desktop/S2020/ProgLangs/PythonCode/Lab2/L2Q3.py",
+		"/Users/mohamednagaty/Desktop/S2020/ProgLangs/PythonCode/Lab2/L2Q2b.py",
+		"/Users/mohamednagaty/Desktop/S2020/ProgLangs/PythonCode/Lab2/L2Q2a.py",
+		"/Users/mohamednagaty/Desktop/S2020/ProgLangs/PythonCode/Lab2/L2Q1c.py",
+		"/Users/mohamednagaty/Desktop/S2020/ProgLangs/PythonCode/Lab2/L2Q1b.py",
+		"/Users/mohamednagaty/Desktop/S2020/ProgLangs/PythonCode/Lab2/L2Q1a.py",
+		"/Users/mohamednagaty/Downloads/PythonClassTutorial/01-IntroductionToPython.py",
+		"/Users/mohamednagaty/Desktop/S2020/ProgLangs/PythonCode/L1Q4.py",
+		"/Users/mohamednagaty/Desktop/S2020/ProgLangs/PythonCode/L1Q3.py",
+		"/Users/mohamednagaty/Desktop/S2020/ProgLangs/PythonCode/L1Q2.py",
+		"/Users/mohamednagaty/Desktop/S2020/ProgLangs/PythonCode/L1Q1.py",
+		"/Users/mohamednagaty/Desktop/S2020/ProgLangs/PythonCode/L1Q5.py",
+		"/Users/mohamednagaty/Desktop/S2020/ProgLangs/PythonCode/example1.py"
+	],
+	"find":
+	{
+		"height": 24.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 24.0
+	},
+	"input":
+	{
+		"height": 37.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "manage.sublime-project",
+	"replace":
+	{
+		"height": 44.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 392.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 592.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 226.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

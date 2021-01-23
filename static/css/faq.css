@@ -1,0 +1,15 @@
+
+#question{
+	color: black;
+	padding-top: 10px;
+}
+
+#answer{
+	color:grey;
+	padding-top: 10px;
+}
+
+hr{
+	padding-top: 30px;
+	padding-bottom: 5px;
+}

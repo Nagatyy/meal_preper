@@ -1,41 +1,96 @@
 {% extends 'base.html' %}
 
 {% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    Get Started
+{% endblock title %}
 
 
 
 {% block content %}
 
-	<link rel="stylesheet" type="text/css" href="{% static 'css/registration_complete_style.css' %}">
 
-	<body>
+<head>
+    <title>Registration - Meal Mill </title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/registration_complete_style.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+    <div class="form_wrapper">
+        <div class="row justify-content-center" id = "main">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row justify-content-center">
+
+                            <div class="col-lg-8">
+                                <div class="p-1">
+                                    <div class="text-center">
+                                        <h4 class="text-dark mb-2">Welcome {{ user.username }}</h4>
+                                        <p class="mb-4">Before you go on, would you like to edit your daily calories and macros? The amount below is reccomended based on your profile.</p>
+                                    </div>
+                                    <form class="user" method="POST">
+                                    	{% csrf_token %}
+
+                                        
+                                        <p> {{ m_form.errors }}</p>
+   
+                                            <div class="form-row">
+                                                <div class="col">
+                                                    {{ m_form.calories | as_crispy_field }}
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="col-md-12 col-lg-4">
+
+                                                    {{ m_form.carbs_percent | as_crispy_field }}
+                                                    
+
+                                                </div>
+                                                <div class="col-md-12 col-lg-4">
+                                                    
+                                                    {{ m_form.protein_percent | as_crispy_field }}
+                                                </div>
+                                                <div class="col-md-12 col-lg-4">
+                                                    
+                                                    {{ m_form.fat_percent | as_crispy_field }}
+                                                </div>
+                                            </div>
+
+                                            <div class="form-row">
+                                                <div class="col-md-12 col-lg-6">
+                                                    {{ m_form.num_of_meals | as_crispy_field }}
+                                                </div>
+                                                <div class="col-md-12 col-lg-6">
+                                                    {{ m_form.num_of_snacks | as_crispy_field }}
+                                                </div>
+                                            </div>
+                                        </div><button class="btn btn-success btn-block text-white btn-user" type="submit">Im Ready!</button>
+                                        	
+                                
+                                    </form>
+                                </div>
+                            </div>
+<!--                             <div class="col-lg-2 d-none d-lg-flex">
+
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
+<script type="text/javascript">
 
-		<div class="container pt-5 maindiv">
-
-			<div>
-
-	            {% if messages %}
-	            {% for message in messages %}
-
-	            <div class="alert alert-{{ message.tags }}"> 
-	                {{ message }}
-	            </div>
-
-	            {% endfor %}
-	            {% endif %}
-
-         	</div>
-
-			<h2> Thanks for registering. You can now login! </h2>
-
-			<a href="{% url 'login' %}"> Press here to login </a>
-			<hr>
-
-		</div>
-	</body>
-
+</script>
+</body>
 
 
 {% endblock content %}

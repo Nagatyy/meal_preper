@@ -1,0 +1,86 @@
+{% extends 'logged_in_base.html' %}
+
+{% load static %}
+
+{% block title %}
+	Saved Meals
+{% endblock title %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/meals.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/loading.css' %}">
+<link rel="stylesheet" href="{% static 'css/meals_mobile.css' %}">
+<link rel="stylesheet" href="{% static 'css/sweet_alert.css' %}">
+<link rel="stylesheet" href="{% static 'css/button_hover.css' %}">
+	<div id="loader">
+		<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+	</div>
+
+	<body id="page-top">
+	    <div id="wrapper">
+	        <div class="d-flex flex-column" id="content-wrapper">
+	            <div id="content">
+	                <div class="container-fluid">
+
+	                    <div class="d-sm-flex justify-content-between align-items-center mb-4">
+	                        <h3 class="text-secondary mb-0">Saved Meals</h3>
+	                    </div>
+	                    <div class="row">
+	                        <div class="col">
+	                        	<div id="noSavedMealsAlert" class="alert alert-dark">
+	                        		 You dont seem to have any saved meals yet. You can save a meal by pressing on the  
+	                        			&nbsp; <i class="fas fa-ellipsis-v" style="color:#0C7020;"></i> &nbsp; 
+	                        		 icon next to any meal then selecting 'Save Meal'.
+	                        	
+	                        	</div> 
+
+	                            {% for i in r_num_of_saved_meals %}
+	                            	<div id="mealDiv{{ i | add:'1' }}">
+	                            		{% include 'meal_plan/meal.html' %}
+	                            		
+	                            	</div>
+  								{% endfor %}
+
+	                        </div>
+	                      
+	                	</div>
+	                
+	            	</div>
+	       		</div>
+	       	</div>
+	    </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>
+	</body>
+
+
+    <div class="modal fade" data-backdrop="static" data-keyboard="false" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="false" >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel4"> Oops. Looks like something went wrong. </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+
+          </div>
+          <div class="modal-body">
+            If the issue persists, please contact us at hello@mealmill.co or via www.mealmill.co/contact
+          </div>
+        </div>
+      </div>
+    </div>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
+
+
+    <script type="text/javascript">
+    	var numOfSavedMeals = {{num_of_saved_meals}};
+    </script>
+    <script src="{% static 'js/saved_meals.js'%}"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+{% endblock content %}
+

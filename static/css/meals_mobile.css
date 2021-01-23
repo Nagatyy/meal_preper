@@ -1,0 +1,19 @@
+@media screen and (max-width:1200px) {
+
+    .hideOnMobile{
+        display: none
+    }
+
+    #content{
+        padding-right: 0px;
+        padding-left: 0px;
+    }
+    .centerMobile{
+        justify-content: center;
+    }
+    .mobileColumn{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+
+}

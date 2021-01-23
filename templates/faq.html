@@ -1,0 +1,44 @@
+{% extends 'logged_in_base.html' %}
+{% load static %}
+
+<head>
+	<title>FAQ - Meal Mill</title>
+	<link rel="stylesheet" href="{% static 'css/faq.css' %}">
+</head>
+
+
+{% block content %}
+
+	<title>FAQ - Meal Mill</title>
+	<link rel="stylesheet" href="{% static 'css/faq.css' %}">
+
+<div id="content">
+	<h1> Frequently Asked Questions </h1>
+
+	<div style="margin-left: 20px; padding-top: 60px">
+		<h3 id="question"> Q: What is required to be a member in Mili Meal? </h3>
+		<h5 id="answer"> A: The user simply must enter their age and their weight & height, and it will suggest a calorie based on that. </h5>
+		<hr>
+
+		<h3 id="question">Q: What the minimum age required? </h3>
+		<h5 id="answer"> A: 16 is the minimum age of the user</h5>
+		<hr>
+
+
+		<h3 id="question">Q: What if the user does not like the food suggested or have allergy to it?</h3>
+		<h5 id="answer"> A: The user can always customize their meals based on the preferences </h5>
+		<hr>
+
+
+		<h3 id="question">Q: Is the schedule weekly or daily?</h3>
+		<h5 id="answer"> A: The user can have a daily schedule or weekly schedule based on their preferences</h5>
+		<hr>
+		
+	</div>
+
+
+
+</div>
+
+
+{% endblock content %}

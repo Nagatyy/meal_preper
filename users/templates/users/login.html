@@ -1,11 +1,14 @@
 <!-- Adapted from:
 https://inspiredwebdev.com/create-responsive-html-login-form -->
 
-
 {% extends 'base.html' %}
 
 {% load static %}
 {% load crispy_forms_tags %}
+
+{% block title %}
+    Login
+{% endblock title %}
 
 
 {% block content %}
@@ -20,31 +23,46 @@ https://inspiredwebdev.com/create-responsive-html-login-form -->
 
 <body>
 
-    <div class="container pt-5">
+    <div class="container pt-5" id="main">
+
 
         <div id="form_wrapper">
             <div id="form_left">
                 <img src="{% static 'images/main_logo.png' %}" alt="food icon">
             </div>
             <div id="form_right">
-                <h1>Member Login</h1>
+                <!-- <h1>Member Login</h1> -->
+                <div>
+
+                    {% if messages %}
+                    {% for message in messages %}
+
+                    <div class="alert alert-{{ message.tags }}"> 
+                        {{ message }}
+                    </div>
+
+                    {% endfor %}
+                    {% endif %}
+
+                </div>                
+
                 
-            <form class = "frm" method="POST">
-                {% csrf_token %}
-                <fieldset class="form-group">
-                    {{ form | crispy }}
-                    <input type="submit" value="Login" id='input_submit' class='input_field'>
-                </fieldset>
-                <hr>
+                <form class = "frm" method="POST">
+                    {% csrf_token %}
+                    <fieldset class="form-group">
+                        {{ form | crispy }}
+                        <input type="submit" value="Login" id='input_submit' class='input_field'>
+                    </fieldset>
+                    <hr>
 
 
 
-                <a href="#"> Forgot Your Password?</a>
-                <span id='create_account'>
-                    <a href="{% url 'register' %}">Create your account ➡ </a>
-                </span>
+                    <a href="#"> Forgot Your Password?</a>
+                    <span id='create_account'>
+                        <a href="{% url 'register' %}">Create an account</a>
+                    </span>
 
-            </form>
+                </form>
 
 
 

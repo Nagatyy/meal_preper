@@ -1,0 +1,155 @@
+{% load static %}
+
+
+<div class="row">
+
+    <div class="col">
+        <div class="card shadow mb-4">
+            <div class="card-header d-flex justify-content-between align-items-center">
+
+                <h6 id="meal_{{ i | add:'1' }}_title" class="text-secondary font-weight-bold m-0">
+                    <span id="clicableTitle{{ i | add:'1' }}"> Meal Title </span>
+                
+            	</h6>
+
+
+
+            	<div class="row">
+            		<button class="btn hideOnMobile" type="button" style="margin-right: 10px"> 
+                    <a id="expandButton{{ i | add:'1' }}" target="_blank"> View Meal </a>
+                    </button>
+
+
+            		<button id="regenerateMeal{{ i | add:'1' }}" class=" hideOnMobile btn" type="button" style="margin-right: 10px">
+                        <span id="spinner{{ i | add:'1' }}"class="spinner-border spinner-border-sm" role="status" aria-hidden="true" style="display: none;"></span>
+                        <i id="refresh{{ i | add:'1' }}"class="fa fa-refresh"></i>
+
+                    </button>
+
+                    <div class="dropdown no-arrow">
+                        <button class="btn btn-link btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button" style="background: #F8F9FC;">
+                            <i class="fas fa-ellipsis-v" style="color:#0C7020;"></i>
+                        </button>
+                        <div class="dropdown-menu shadow dropdown-menu-right animated--fade-in" role="menu">
+                            <!-- <p class="text-center dropdown-header">Actions Here:</p> -->
+                            <li id="saveButton{{ i | add:'1' }}" class="dropdown-item" role="presentation" >&nbsp;<a><i class="far fa-save"></i> Save Meal</a></li>
+                            <li id="flagButton{{ i | add:'1' }}" class="dropdown-item" role="presentation" >&nbsp;<a><i class="fas fa-flag"></i> Flag Meal</a></li>
+
+
+                            <li class="dropdown-item" role="presentation" >&nbsp;<a id="expandButtonMobile{{ i | add:'1' }}" target="_blank" style="display: inline-block;"><i class="fas fa-expand-arrows-alt"></i> View Meal</a></li>
+
+                            <li id="liRegenMobile{{ i | add:'1' }}" class="dropdown-item" role="presentation" >&nbsp;<a id="regenerateMealMobile{{ i | add:'1' }}"><i id="refresh{{ i | add:'1' }}"class="fa fa-refresh"></i> Regenerate Meal</a></li>
+
+
+
+
+    <!--                         <button class="btn hideOnMobile" type="button" style="margin-right: 10px"> 
+                    <a id="expandButton{{ i | add:'1' }}" target="_blank"> View Meal </a>
+                    </button>
+
+
+                    <button id="regenerateMeal{{ i | add:'1' }}" class=" hideOnMobile btn" type="button" style="margin-right: 10px">
+                        <span id="spinner{{ i | add:'1' }}"class="spinner-border spinner-border-sm" role="status" aria-hidden="true" style="display: none;"></span>
+                        <i id="refresh{{ i | add:'1' }}"class="fa fa-refresh"></i>
+ -->
+                    </button>
+
+                            
+                            
+                            <!-- <div class="dropdown-divider"></div> -->
+                        </div>
+                    </div>
+
+            	</div>
+
+
+
+            </div>
+
+
+            <div class="card-body" id="card-body{{ i | add:'1' }}">
+                    <div class="d-flex justify-content-center">
+                      <div id="mobileSpinner{{ i | add:'1' }}" class="spinner-border text-secondary" role="status" style="display: none">
+                      </div>
+                    </div>
+                <div class="row">
+
+                    <div class="col-lg-12 col-xl-3">
+                        <div class="d-flex justify-content-center">
+                        
+                    	   <img id="mealImage{{ i | add:'1' }}"style="width: auto; height: auto; max-height: 150px; max-width: 150px; border-radius: 10px"src="{% static 'images/meal_default.png' %}">
+
+                        </div>
+
+
+
+                    	<hr>
+                        
+    						<input class="hideOnMobile" type="checkbox" id="checkbox{{ i | add:'1' }}">
+                        	<label id="checkboxText{{ i | add:'1' }}"class="hideOnMobile form-check-label text-secondary" for="exampleCheck1">I Ate This</label> 
+
+                            <br>
+
+                            <div class="hideOnMobile centerMobile" id="mealSavedContent{{ i | add:'1' }}">
+                                <i style="color: #0C7020" class="fas fa-check-square"></i> <label class="text-secondary"> Meal Saved</label>
+                                
+                            </div>
+
+
+                    </div>
+
+                    <div class="col-lg-12 col-xl-9">
+                        <div class="row">
+                            <!-- <div class="col-4"> -->
+                                <!-- <h6 class="text-secondary" id="calorieNumber{{ i | add:'1' }}"> Calories: 500</h6> -->
+                            <!-- </div> -->
+                            <div class="col-lg-12 col-xl-6">
+                                <div class="row centerMobile">
+                                    <i class="far fa-clock center text-secondary pr-2"></i>
+                
+                                    <h6 class="text-secondary" id="cookingTime{{ i | add:'1' }}"> 0 mins to cook </h6>
+                                </div>
+
+                            </div>
+
+                            <div class="col-lg-12 col-xl-6">
+                                <div class="row centerMobile">
+                                    <i class="fas fa-utensils text-secondary pr-2"></i>
+                                    <h6 class="text-secondary" id="servingSize{{ i | add:'1' }}"> Servings: 0</h6>
+                                </div>
+                                
+                            </div>
+                        </div>
+
+                        <br>
+
+                        <div class="row centerMobile">
+                            <i class="fas fa-drumstick-bite text-secondary pr-2"></i>
+                            <h6 class="text-secondary" id="calories{{ i | add:'1' }}"> Calories: 0</h6>
+
+                            
+                        </div>
+                    	
+                    	<br>
+
+                        <div class="row centerMobile">
+                            
+                        
+                    	   <h6 id="ingredientsListText{{ i | add:'1' }}" class="text-secondary font-weight-bold m-0"> Ingredient list </h6>
+                        </div>
+                    	<hr>
+                    	<div>
+	                    	<ul id="ingredientsList{{ i | add:'1' }}"class="text-secondary"><ul>
+
+                    	</div>
+                    	<br>
+                    
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

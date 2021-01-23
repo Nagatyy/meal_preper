@@ -1,14 +1,14 @@
 {% load static %}
+@import url("https://fonts.googleapis.com/css?family=Lato:400");
 
 :root {
-    --body_gradient_left:#7200D0;
-    --body_gradient_right: #C800C1;
-    --form_bg: #ffffff;
-    --input_bg: #E5E5E5;
-    --input_hover:#eaeaea;
-    --submit_bg: #1FCC44;
-    --submit_hover: #00FA9A;
-    --icon_color:#6b6b6b;
+        --body_bg:#635efa;
+        --form_bg: #ffffff;
+        --input_bg: rgba(12,112,32,1);
+        --input_hover:rgba(61,186,88,1);
+        --submit_bg: rgba(12,112,32,1);
+        --submit_hover: rgba(61,186,88,1);
+        --icon_color:#6b6b6b;
 }
 
 * {
@@ -17,35 +17,46 @@
     box-sizing: border-box;
 }
 
+h1{
+    font-family: 'Lato'
+}
 
-body {
+
+.bodyClass {
     /* make the body full height*/
-    height: 100vh;
+    height: 100%;
     /* set our custom font */
     font-family: 'Roboto',
     sans-serif;
     /* create a linear gradient*/
-    background: linear-gradient(0deg, #9cff98 0%, rgba(61,186,88,1) 100%);
     display:flex;
+    margin-bottom: 9%;
+    background: rgba(12,112,32,1);
+    /*overflow: hidden;*/
+
 }
 
 #form_wrapper {
-    width: 90%;
-    height: 90%;
-    /* this will help us center it*/
-    margin:auto;
-    background-color: var(--form_bg);
-    border-radius: 8px;
-    /* make it a grid container*/
-    display: grid;
-    /* with two columns of same width*/
-    grid-template-columns: 1fr 1fr;
-    /* with a small gap in between them*/
-    grid-gap: 5vw;
-    /* add some padding around */
-    padding: 10vh 15px;
-    margin-top: 2%;
-    margin-bottom: 2%;
+        width: 90%;
+        /*height: 10%;*/
+        /* this will help us center it*/
+        margin:auto;
+        background-color: var(--form_bg);
+        border-radius: 3px;
+        /* make it a grid container*/
+        display: grid;
+        /* with two columns of same width*/
+        grid-template-columns: 1fr 1fr;
+        /* with a small gap in between them*/
+        grid-gap: 5vw;
+        /* add some padding around */
+        padding: 10vh 15px;
+        margin-top: 50px;
+        /*margin-bottom: 2%;*/
+        /*box-shadow: 0 0 10px;*/
+
+        position: relative;
+        height: auto;
 
 }
 
@@ -57,8 +68,8 @@ body {
 }
 
 #form_left img {
-    width: 200px;
-    height: 200px;
+    width: 400px;
+    height: 400px;
 }
 
 .center {

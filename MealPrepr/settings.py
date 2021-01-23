@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import sys
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -25,7 +27,9 @@ SECRET_KEY = 'c2o=$wkl1&vo8q0z!ix=r*gqm4gicui8w1=%3d-twtskq#s2ax'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# ALLOWED_HOSTS = ['192.168.1.19', 'localhost', '127.0.0.1']
 ALLOWED_HOSTS = ['*']
+
 
 
 
@@ -45,7 +49,11 @@ INSTALLED_APPS = [
     'formtools',
 
 
+    'meal_plan',
+
+
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -138,6 +146,12 @@ STATICFILES_DIRS = [
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-LOGIN_REDIRECT_URL = 'home'
-
 LOGIN_URL = 'login'
+
+LOGOUT_REDIRECT_URL = 'login/'
+
+
+
+
+
+
