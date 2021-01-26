@@ -178,6 +178,8 @@ EMAIL_HOST_USER = 'hello@mealmill.co'
 EMAIL_HOST_PASSWORD = 'Mohmohmohmoh12@'
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
+DEFAULT_FROM_EMAIL = 'hello@mealmill.co'
+
 
 
 
