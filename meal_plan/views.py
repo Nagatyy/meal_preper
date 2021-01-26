@@ -105,7 +105,6 @@ def get_saved_meals(request):
 def spoonacular_endpoint(request):
 	if request.is_ajax and request.method == "GET":
 		url = request.GET['url']
-		print(url)
 		headers = {
 			'x-rapidapi-key': "469997c2c3msh7e5e3b5e60470e4p14dfeajsndca9151ca355",
 			'x-rapidapi-host': "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
