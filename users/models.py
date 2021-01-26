@@ -13,9 +13,6 @@ class Profile(models.Model):
 	# on_delete= mod... means that if the user is deleted, also delete the profile but not the other way around
 	user = models.OneToOneField(User, on_delete=models.CASCADE)
 
-	# a user has an image which is saved in profile_pics
-	image = models.ImageField(default='default.png', upload_to='profile_pics')
-
 	gender_choices = ( 
     			("male", "Male"), 
     			("female", "Female"), 
