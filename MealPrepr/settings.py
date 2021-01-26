@@ -172,6 +172,7 @@ EMAIL_PAGE_DOMAIN = 'https://mealmill.co/'
 
 # For Django Email Backend
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_HOST = 'smtppro.zoho.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'hello@mealmill.co'
