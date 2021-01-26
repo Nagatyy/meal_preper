@@ -21,7 +21,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'c2o=$wkl1&vo8q0z!ix=r*gqm4gicui8w1=%3d-twtskq#s2ax'
+# SECRET_KEY = 'c2o=$wkl1&vo8q0z!ix=r*gqm4gicui8w1=%3d-twtskq#s2ax'
+SECRET_KEY = os.environ.get('MEAL_MILL_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -178,7 +179,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtppro.zoho.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'hello@mealmill.co'
-EMAIL_HOST_PASSWORD = 'Mohmohmohmoh12@'
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASS')
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 DEFAULT_FROM_EMAIL = 'hello@mealmill.co'
