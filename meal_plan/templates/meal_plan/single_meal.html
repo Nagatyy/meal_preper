@@ -6,20 +6,25 @@
 	Single Meal
 {% endblock title %}
 
+{% block extrahead %} 
+    <link rel="stylesheet" href="{% static 'css/meals.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/generate_single.css' %}">
+	<link rel="stylesheet" href="{% static 'css/meals_mobile.css' %}">
+	<link rel="stylesheet" href="{% static 'css/sweet_alert.css' %}">
+	<link rel="stylesheet" href="{% static 'css/button_hover.css' %}">
+	<link rel="stylesheet" href="{% static 'css/loading.css' %}">
+	<meta name="robots" content="noindex, nofollow" />
+
+{% endblock extrahead %}
+
+
 {% block content %}
 
-<link rel="stylesheet" href="{% static 'css/meals.min.css' %}">
-<link rel="stylesheet" href="{% static 'css/generate_single.css' %}">
-<link rel="stylesheet" href="{% static 'css/meals_mobile.css' %}">
-<link rel="stylesheet" href="{% static 'css/sweet_alert.css' %}">
-<link rel="stylesheet" href="{% static 'css/button_hover.css' %}">
-<link rel="stylesheet" href="{% static 'css/loading.css' %}">
 
 <div id="loader">
 	<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
 </div>
 
-<body id="page-top">
 	    <div id="wrapper">
 	        <div class="d-flex flex-column" id="content-wrapper">
 	            <div id="content">
@@ -172,16 +177,14 @@
 	                
 	            </div>
 	        </div>
-	    </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>
+	    </div><a class="border rounded d-inline scroll-to-top" href="#wrapper"><i class="fas fa-angle-up"></i></a></div>
 
+{% endblock content %}
 
+{% block extrascript %} 
 
-	    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
 	    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
-	    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
 	    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
-		
 		<script src="{% static 'js/generate_single_meal.js'%}"></script>
 	    <script>
     		function showCarbs(){
@@ -219,7 +222,4 @@
 			}
 		</script>
 
-
-	</body>
-
-{% endblock content %}
+{% endblock extrascript %}

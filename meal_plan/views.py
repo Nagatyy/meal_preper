@@ -6,6 +6,7 @@ from django.http import HttpResponse
 from django.http import QueryDict
 import json
 from django.http import JsonResponse
+import requests
 
 
 # Create your views here.
@@ -99,6 +100,19 @@ def get_saved_meals(request):
 			return HttpResponse('{}', content_type="application/json")
 		else:
 			return HttpResponse(json.loads(request.user.meals.user_saved_meals), content_type="application/json")
+
+@login_required
+def spoonacular_endpoint(request):
+	if request.is_ajax and request.method == "GET":
+		url = request.GET['url']
+		print(url)
+		headers = {
+			'x-rapidapi-key': "469997c2c3msh7e5e3b5e60470e4p14dfeajsndca9151ca355",
+			'x-rapidapi-host': "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
+			}
+		response = requests.request("GET", url, headers=headers)
+		return HttpResponse(response, content_type="application/json")
+
 
 
 

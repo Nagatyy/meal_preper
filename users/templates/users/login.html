@@ -11,20 +11,16 @@ https://inspiredwebdev.com/create-responsive-html-login-form -->
 {% endblock title %}
 
 
+{% block extrahead %} 
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login_style.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
+    <meta name="description" content="Log into Meal Mill to start generating your daily meals.">
+    <meta name="robots" content="index, follow"/>
+{% endblock extrahead %}
+
+
 {% block content %}
-
-
-<link rel="stylesheet" type="text/css" href="{% static 'css/login_style.css' %}">
-
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
-            crossorigin="anonymous">
-
-<link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
-
-<body>
-
     <div class="container pt-5" id="main">
-
 
         <div id="form_wrapper">
             <div id="form_left">
@@ -64,12 +60,9 @@ https://inspiredwebdev.com/create-responsive-html-login-form -->
 
                 </form>
 
-
-
             </div>
         </div>
     </div>
-</body>
 
 
 {% endblock content %}

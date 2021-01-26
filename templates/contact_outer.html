@@ -1,4 +1,4 @@
-{% extends 'logged_in_base.html' %}
+{% extends 'base.html' %}
 {% load static %}
 
 {% load crispy_forms_tags %}
@@ -12,14 +12,22 @@
 {% block extrahead %} 
     <link rel="stylesheet" href="{% static 'css/button_hover.css' %}">
     <meta name="robots" content="noindex, nofollow" />
+
+    <style type="text/css">
+        body {
+            background-color: #0C7020;
+        }
+    </style>
 {% endblock extrahead %}
 
 {% block content %}
-
-        <div class="container">
+        
+        <br>
+        
+        <div class="container my-5" style="background-color: white">
             <div class="row">
 
-                <div class="col-xl-8 offset-xl-2 py-5">
+                <div class="col-xl-8 offset-xl-2 my-5">
 
                     <h1 style="color:#868e96">Contact us!</h1>
                     <p class="lead"> You can reach us directly at hello@mealmill.co</p>

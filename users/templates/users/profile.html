@@ -8,11 +8,13 @@
     Profile
 {% endblock title %}
 
+{% block extrahead %} 
+    <link rel="stylesheet" href="{% static 'css/button_hover.css' %}">
+    <meta name="robots" content="noindex, nofollow" />
+{% endblock extrahead %}
 
 {% block content %}
-<link rel="stylesheet" href="{% static 'css/button_hover.css' %}">
 
-<body id="page-top">
 
     <div id="wrapper">
         <div class="d-flex flex-column" id="content-wrapper">
@@ -22,7 +24,7 @@
                     <div class="row mb-3">
                         <div class="col-lg-4">
                             <div class="card mb-3">
-                                <div class="card-body text-center shadow"><img class="rounded-circle mb-3 mt-4" src="{{ user.profile.image.url }}" width="160" height="160">
+                                <div class="card-body text-center shadow"><img class="rounded-circle mb-3 mt-4" src="{% static 'images/default.png' %}" width="160" height="160">
                                 </div>
                             </div>
                             <div class="card shadow mb-4">
@@ -72,7 +74,11 @@
                                         </div>
                                         <div class="card-body">
 
-                                            <form method="POST" enctype="multipart/form-data" id="profileForm">
+                                            <div id = "profileError" class="alert alert-danger" style="display: none"> 
+                                                <h6 id="profileErrorText" style="color: #ad3e36"> Error </h6>
+                                            </div>
+
+                                            <form method="POST" enctype="multipart/form-data" id="profileForm" name="profileForm" onsubmit="return validateFormProfile()">
                                                 {% csrf_token %}
                                                 <div class="form-row">
 
@@ -119,7 +125,7 @@
                                         </div>
                                         <div class="card-body">
                                             <div id = "macrosError" class="alert alert-danger" style="display: none"> 
-                                                <h6 style="color: #ad3e36"> Your carbs, protein and fat percentages must add up to 100%! </h6>
+                                                <h6 id="macrosErrorText" style="color: #ad3e36"> Error </h6>
                                             </div>
                                             
                                             <form method="POST" enctype="multipart/form-data" id="mealsForm" onsubmit="return validateForm()" name="mealsForm">
@@ -208,7 +214,9 @@
             </div>            
 
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
+{% endblock content %}
+
+{% block extrascript %} 
 
     <script type="text/javascript">
         function validateForm() {
@@ -219,23 +227,60 @@
             var carbs = document.forms["mealsForm"]["carbs_percent"].value;
             var fat = document.forms["mealsForm"]["fat_percent"].value;
             var protein = document.forms["mealsForm"]["protein_percent"].value;
+            var calories = document.forms["mealsForm"]["calories"].value;
+
+            var numOfMeals = document.forms["mealsForm"]["num_of_meals"].value;
+            var numOfSnacks = document.forms["mealsForm"]["num_of_snacks"].value;
 
 
             if(parseInt(carbs) + parseInt(protein) + parseInt(fat) != 100){
                 document.getElementById("macrosError").style.display = "block";
+                document.getElementById("macrosErrorText").innerHTML = "Your carbs, protein and fat percentages must add up to 100%!";
+                return false;
+            }
+
+            if(calories < 600 || calories > 10000){
+                document.getElementById("macrosError").style.display = "block";
+                document.getElementById("macrosErrorText").innerHTML = "Your calories must be between 600 and 10000";
+                return false;
+            }
+
+            if(numOfMeals < 2 || numOfMeals > 6){
+                document.getElementById("macrosError").style.display = "block";
+                document.getElementById("macrosErrorText").innerHTML = "Number of meals must be between 2 and 6!";
+                return false;
+            }
+
+            if(numOfSnacks < 0 || numOfSnacks > 6){
+                document.getElementById("macrosError").style.display = "block";
+                document.getElementById("macrosErrorText").innerHTML = "Number of snacks must be between 0 and 6!";
                 return false;
             }
         }
-        
-        
 
+        function validateFormProfile() {
+
+            $('#profileModal').modal('hide');
+            $('.modal-backdrop').remove();
+
+            var weight = document.forms["profileForm"]["weight"].value;
+            var age = document.forms["profileForm"]["age"].value;
+
+            if(weight > 1000 || weight < 30){
+                document.getElementById("profileError").style.display = "block";
+                document.getElementById("profileErrorText").innerHTML = "Your weight is out of bounds";
+                return false;
+            }
+            if(age < 1 || age > 100){
+                document.getElementById("profileError").style.display = "block";
+                document.getElementById("profileErrorText").innerHTML = "Your age is out of bounds";
+                return false;
+            }
+        }
     </script>
-</body>
 
 
 
-
-
-{% endblock content %}
+{% endblock extrascript %}
 
 

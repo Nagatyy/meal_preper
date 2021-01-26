@@ -1,1 +1,1 @@
-This webapp was build while learning Django.
+This webapp was built while learning Django.

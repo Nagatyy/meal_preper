@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+	{% if success %}
+	Verification Success
+	{% else %}
+	Verification failed
+	{% endif %}
+{% endblock title %}
+
+{% block extrahead %} 
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/email_verification.css' %}">
+    <meta name="robots" content="noindex, nofollow" />
+
+{% endblock extrahead %}
+
+{% block content %}
+
+    <div class="form_wrapper">
+        <div class="row justify-content-center" id = "main">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="p-1">
+                                    <div class="text-center">
+                                        <div>
+                                        	{% if success %}
+                                            <div class="alert alert-success"> 
+                                                {{ user.username }}, your email is now verified!
+                                            </div>
+                                            {% else %}
+                                            <div class="alert alert-danger"> 
+                                                Verification failed.
+                                            </div>
+                                            {% endif %}
+                                        </div> 
+                                        {% if success %}
+                                        <h4 class="text-dark mb-2">You're all set up</h4>
+                                        <p class="mb-4">You can now close this page.</p>
+                                        <p class="mb-4">Or you can login using the button below:</p>
+                                        <button id="login_button" href="{% url 'login' %}" onclick="location.href='{% url 'login' %}';"> Login </button>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock content %}

@@ -1,3 +1,4 @@
+<!-- Inspired by a Shopify Template -->
 {% extends 'base.html' %}
 {% load static %}
 
@@ -5,31 +6,20 @@
    Home
 {% endblock title %}
 
+{% block extrahead %} 
+
+    <link rel="stylesheet" href="{% static 'css/home.min.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.css">
+    <link rel='stylesheet' href="{% static 'css/home_top.min.css' %}" />
+
+    <meta name="description" content="Meal Mill allows you to automatically generate meal plans that meet your dietary goals.">
+    <meta name="robots" content="index, follow" />
+{% endblock extrahead %}
+
+
 {% block content %}
 
-
-  <!-- Page Content -->
-
-<head>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    
-    <link rel="stylesheet" href="{% static 'css/home.min.css' %}">
-   <!--  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kaushan+Script">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700"> -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.css">
-
-
-    <link rel='stylesheet' href="{% static 'css/home_top.min.css' %}" />
-</head>
-  
-<body id="page-top">
-    <!-- Hero unit -->
-    <div class="hero">
+      <div class="hero">
         <div class="hero__overlay hero__overlay--gradient"></div>
         <div class="hero__mask"></div>
         <div class="hero__inner">
@@ -40,7 +30,12 @@
                         <div class="d-flex justify-content-center">
                             <p class="hero__text"> Eating Made Simple </p>
                         </div>
-                        <a href="{% url 'register' %}" class="button button__accent">Register</a>
+                        
+                        <div class="d-flex justify-content-center">
+                            <a href="{% url 'register' %}" class="button button__accent" style="text-decoration: none">Register</a>
+                            <a href="{% url 'login' %}" class="button button__accent" style="text-decoration: none">Login</a>
+                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -57,17 +52,17 @@
             </div>
             <div class="row text-center">
                 <div class="col-md-4 col-lg-6" data-aos="fade-up" data-aos-duration="750">
-<!--                     <span class="fa-stack fa-4x"><i class="fa fa-circle fa-stack-2x text-primary"></i>
-                        <i class="fa fa-shopping-cart fa-stack-1x fa-inverse"></i>
-                    </span> -->
-                    <img class="rounded-circle img-fluid" width="100" height="100" src="{% static 'images/individual.svg' %}">
-                    <h4 class="section-heading">Individuals</h4>
+                    <span class="fa-stack fa-4x"><i class="fa fa-circle fa-stack-2x" style="color:#0C7020"></i>
+                        <i class="fas fa-male fa-stack-1x fa-inverse"></i>
+                    </span>
+<!--                     <img class="rounded-circle img-fluid" width="100" height="100" src="{% static 'images/individual.svg' %}">
+ -->                    <h4 class="section-heading">Individuals</h4>
                     <p class="text-muted"> Individuals looking to lose or gain weight can use Meal Mill for fully customizable meal plans. Long gone are the days of boring meal plans. With Meal Mill, you can add flavor to your diet and become your own nutritionist.</p>
                 </div>
                 <div class="col-md-4 col-lg-6 offset-lg-0" data-aos="fade-up" data-aos-duration="750" data-aos-delay="200">
-                    <!-- <span class="fa-stack fa-4x"><i class="fa fa-circle fa-stack-2x text-primary"></i><i class="fa fa-sitemap fa-stack-1x fa-inverse"></i></span> -->
-                    <img class="rounded-circle img-fluid" width="100" height="100" src="{% static 'images/coach.svg' %}">
-                    <h4 class="section-heading">Coaches</h4>
+                    <span class="fa-stack fa-4x"><i class="fa fa-circle fa-stack-2x" style="color:#0C7020"></i><i class="fa fa-sitemap fa-stack-1x fa-inverse"></i></span>
+<!--                     <img class="rounded-circle img-fluid" width="100" height="100" src="{% static 'images/coach.svg' %}">
+ -->                    <h4 class="section-heading">Coaches</h4>
                     <p class="text-muted">Designing customized meal plans for clients can be a time consuming process. Coaches can use Meal Mill to greatly improve the meal planning process. Coaches also have the luxury of over 5000 meals to choose from, all with comprehensive caloric profiles. </p>
                 </div>
             </div>
@@ -184,36 +179,29 @@
 
 
             <div class="row" style="justify-content: center;">
-                <a href="{% url 'register' %}" class="button button__accent2">Register Now!</a>
+                <a href="{% url 'register' %}" class="button button__accent2" style="text-decoration: none">Register!</a>
+                
 
+            </div>
+
+            <br>
+            <div class="row" style="justify-content: center;">
+                <a href="{% url 'contact_outer' %}" class="button button__accent2" style="text-decoration: none">Contact Us</a>
+                
             </div>
         </div>
     </section>
     <footer>
         <div class="container">
             <div class="row">
-                <div class="col-md-3"><span class="copyright"></span></div>
-                <div class="col-md-6"><span class="copyright">Made with ♥ by Nagaty. Designed with ♥ by Ali. &#169;</span></div>
-                <div class="col-md-3">
-                    <ul class="list-inline quicklinks">
-                        <li class="list-inline-item"><a href="#"></a></li>
-                        <li class="list-inline-item"><a href="#"></a></li>
-                    </ul>
-                </div>
+                <div class="col-md-12"><span class="copyright">Developed with ♥ by Nagaty. Designed with ♥ by Ali - &#169;</span></div>
             </div>
         </div>
         <div class="col"><span class="copyright"></span></div>
     </footer>
 
-    
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript" src=" {% static 'js/bs-init.js'%}"></script>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-    <script type="text/javascript" src=" {% static 'js/agency.js'%}"></script>
-</body>
 
 
 {% endblock content %}

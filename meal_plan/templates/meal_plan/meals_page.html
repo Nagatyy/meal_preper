@@ -7,33 +7,23 @@
 {% endblock title %}
 
 
+{% block extrahead %} 
+    <link rel="stylesheet" href="{% static 'css/meals.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/loading.css' %}">
+    <link rel="stylesheet" href="{% static 'css/sweet_alert.css' %}">
+    <link rel="stylesheet" href="{% static 'css/meals_mobile.css' %}">
+	<link rel="stylesheet" href="{% static 'css/button_hover.css' %}">
+	<meta name="robots" content="noindex, nofollow" />
+{% endblock extrahead %}
+
 {% block content %}
 
-
-
-	<head>
-	    <meta charset="utf-8">
-	    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-	    <title>My Meals - Meal Mill</title>
-	    <link rel="stylesheet" href="{% static 'css/meals.min.css' %}">
-	    <link rel="stylesheet" href="{% static 'css/loading.css' %}">
-	    <link rel="stylesheet" href="{% static 'css/sweet_alert.css' %}">
-	    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
-
-	    <link rel="stylesheet" href="{% static 'css/meals_mobile.css' %}">
-		<link rel="stylesheet" href="{% static 'css/button_hover.css' %}">
-
-<!-- 	    <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css"> -->
-
-	</head>
 
 	<div id="loader">
 		<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
 	</div>
 
 
-
-	<body id="page-top">
 	    <div id="wrapper">
 	        <div class="d-flex flex-column" id="content-wrapper">
 	            <div id="content">
@@ -205,7 +195,7 @@
 	                
 	            </div>
 	        </div>
-	    </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>
+	    </div><a class="border rounded d-inline scroll-to-top" href="#wrapper"><i class="fas fa-angle-up"></i></a></div>
 
 
         <div class="modal fade" id="regenerateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="false">
@@ -275,54 +265,26 @@
           </div>
         </div>
 
-       <!--  <div class="modal fade" data-backdrop="static" data-keyboard="false" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="false" >
-          <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel4"> Oops. Looks like something went wrong. </h5>
-
-              </div>
-              <div class="modal-body">
-                Generating a new meal plan usually solves this. If the issue persists, please contact us at hello@mealmill.co or via www.mealmill.co/contact
-              </div>
-              <div class="modal-footer">   
-                	<button id="errorRegenButton" class="btn" style="background: #0C7020;color:white;" type="button" data-target="#newUserModal" class="close" data-dismiss="modal">
-	                    <span id="spinner"class="spinner-border spinner-border-sm pb-1" role="status" aria-hidden="true" style="display: none;"></span>
-	                    Generate Meal Plan &nbsp;&nbsp;
-	                    <i class="fa fa-refresh"></i>
-	                </button>
-              </div>
-            </div>
-          </div>
-        </div> -->
-
-
-		</body>
-
-
-	    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
-	    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
-	    <script src="{% static 'js/my_meals_bs-init.js' %}"></script>
-	    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
-	    <script src="{% static 'js/my_meals_theme.js' %}"></script>
-
-		<!-- declaring variables to be passed to generare_meals.js -->
-	    <script>
-    	var userCals = {{calories}};
-    	var userNumOfMeals = {{num_of_meals}};
-    	var userNumOfSnacks = {{num_of_snacks}};
-    	var proteinPercent = {{protein_percent}};
-    	var fatPercent = {{fat_percent}};
-    	var carbsPercent = {{carbs_percent}};
-
-    	var $j = jQuery.noConflict();
-		</script>
-
-
-	    <script src="{% static 'js/generate_meals_v2.js'%}"></script>
-	    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
-	
-
-
 {% endblock content %}
+
+{% block extrascript %} 
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+
+	<!-- declaring variables to be passed to generare_meals.js -->
+    <script>
+	var userCals = {{calories}};
+	var userNumOfMeals = {{num_of_meals}};
+	var userNumOfSnacks = {{num_of_snacks}};
+	var proteinPercent = {{protein_percent}};
+	var fatPercent = {{fat_percent}};
+	var carbsPercent = {{carbs_percent}};
+
+	var $j = jQuery.noConflict();
+	</script>
+
+
+    <script src="{% static 'js/generate_meals_v2.js'%}"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+{% endblock extrascript %}

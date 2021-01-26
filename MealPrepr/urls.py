@@ -14,32 +14,39 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from users.views import profile_view, RegisterWizard, reg_comp_view, CustomLoginView
+from django.urls import path, include
+from users.views import profile_view, RegisterWizard, reg_comp_view, CustomLoginView, wait_for_email_ver_view
 from django.contrib.staticfiles.urls import  staticfiles_urlpatterns
 from django.contrib.auth import views as auth_views
-from pages.views import home_view, contact_view
+from pages.views import home_view, inner_contact_view, outer_contact_view
 from django.conf import settings
 from django.conf.urls.static import static
 from users.forms import UserRegistrationForm, UserRegistrationForm2
 
-from meal_plan.views import meal_plan_view, post_meal_plan, get_meal_plan, saved_meals_view, single_meal_view, update_saved_meals, get_saved_meals
+from meal_plan.views import meal_plan_view, post_meal_plan, get_meal_plan, saved_meals_view, single_meal_view, update_saved_meals, get_saved_meals, spoonacular_endpoint
+
+from django_email_verification import urls as email_urls
 
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('email/', include(email_urls)),
 
     path('login/', CustomLoginView.as_view(redirect_authenticated_user=True, template_name='users/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('profile/', profile_view, name='profile'),
 
     path('register/', RegisterWizard.as_view([UserRegistrationForm, UserRegistrationForm2]), name='register'),
+    path('verify/email', wait_for_email_ver_view, name='verifyemail'),
+
+    
     path('', home_view, name='home'),
     path('meals/plan/', meal_plan_view, name='mealplan'),
     path('meals/saved', saved_meals_view, name='savedmeals'),
     path('meals/single', single_meal_view, name='singlemeal'),
-    path('contact/', contact_view, name = 'contact'),
+    path('contact/', inner_contact_view, name = 'contact'),
+    path('contactus/', outer_contact_view, name = 'contact_outer'),
 
     
     path('complete/', reg_comp_view, name='comp'),
@@ -52,6 +59,9 @@ urlpatterns = [
 
     path('meals/plan/saved/get/ajax/saved_meals', get_saved_meals, name='get_saved_meals_p'),
     path('meals/plan/saved/post/ajax/saved_meals', update_saved_meals, name='update_saved_meals_p'),
+
+    path('meals/single/get/ajax/spoonacular', spoonacular_endpoint, name='single_spoonacular_endpoint'),
+    path('meals/plan/get/ajax/spoonacular', spoonacular_endpoint, name='single_spoonacular_endpoint'),
 
 
 ] 

@@ -10,6 +10,8 @@ from django.shortcuts import resolve_url
 from formtools.wizard.views import SessionWizardView
 from functools import reduce 
 
+from django_email_verification import send_email
+
 # Create your views here.
 
 
@@ -41,10 +43,13 @@ class RegisterWizard(SessionWizardView):
 			user.profile.height = form_lst[1].cleaned_data.get('height')
 			user.profile.save()
 
-			messages.success(self.request, f'Account created for {user.username}!')
+			messages.success(self.request, f'Verification email sent to {user.email}!')
+
+			user.is_active = False
+			send_email(user)
 
 
-		return redirect('login')
+		return redirect('verifyemail')
 
 
 class CustomLoginView(LoginView):
@@ -133,3 +138,14 @@ def reg_comp_view(request):
 	}
 
 	return render(request, 'users/registration_complete.html', context)
+
+def wait_for_email_ver_view(request):
+
+	if request.user.is_active:
+		return redirect('login')
+
+	else:
+		context = {
+		}
+
+		return render(request, 'users/wait_for_email_ver.html', context)

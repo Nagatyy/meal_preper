@@ -4,8 +4,16 @@ from django.contrib.auth.forms import UserCreationForm
 
 from .models import Profile, MealsProfile
 
+class CaseInsensitiveUserCreationForm(UserCreationForm):
+    def clean(self):
+        cleaned_data = super(CaseInsensitiveUserCreationForm, self).clean()
+        username = cleaned_data.get('username')
+        if username and User.objects.filter(username__iexact=username).exists():
+            self.add_error('username', 'A user with that username already exists.')
+        return cleaned_data
 
-class UserRegistrationForm(UserCreationForm):
+        
+class UserRegistrationForm(CaseInsensitiveUserCreationForm):
 
 	email = forms.EmailField()				# can set required = false
 
@@ -16,8 +24,14 @@ class UserRegistrationForm(UserCreationForm):
 		self.fields['password1'].help_text = ''
 		self.fields['password2'].help_text = ''
 
+	def clean_email(self):
+	    data = self.cleaned_data['email']
+	    if User.objects.filter(email=data).exists():
+	        raise forms.ValidationError("This email is already in use")
+	    return data
 
-	class Meta:								# this gives us a nnested namespace for configurationns
+
+	class Meta:								# this gives us a nested namespace for configurationns
 		model = User 						# this is saying that the users model will be affected
 		fields = ['username','email', 'password1', 'password2']# the fields and order shown on our form
 
@@ -42,6 +56,12 @@ class UserRegistrationForm2(forms.ModelForm):
 				("lbs", "lbs"),
 	)
 
+
+	height_choices = (
+				("cm", "cm"),
+	)
+
+
 	goal_choices = (
 				("lose_weight", "Lose weight"),
 				("maintain_weight", "Maintain Weight"),
@@ -54,15 +74,15 @@ class UserRegistrationForm2(forms.ModelForm):
 	activity_level = forms.ChoiceField(required=True, choices=activity_level_choices)
 
 	preferred_units = forms.ChoiceField(choices=units_choices, widget=forms.RadioSelect)
+	preferred_height_units = forms.ChoiceField(choices=height_choices, widget=forms.RadioSelect)
 	goal = forms.ChoiceField(required=True, choices=goal_choices, label="I want to: ")
 
 	height = forms.FloatField(required=True)
 
 
-
 	class Meta:
 		model = Profile
-		fields = ['gender','weight', 'age', 'height', 'activity_level', 'preferred_units', 'goal']
+		fields = ['gender','weight', 'age', 'height', 'activity_level', 'preferred_units', 'preferred_height_units', 'goal']
 
 
 
@@ -80,7 +100,6 @@ class UserUpdateForm(forms.ModelForm):
 
 
 class ProfileUpdateForm(forms.ModelForm):
-
 	units_choices = (
 				("kg", "kg"),
 				("lbs", "lbs"),

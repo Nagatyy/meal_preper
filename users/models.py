@@ -1,13 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import User
-# from django.apps import meal_plan
 from meal_plan.models import MealPlan
 
 from django.core.validators import MinValueValidator, MaxValueValidator
 
 
 # Create your models here.
-
 
 class Profile(models.Model):
 
@@ -36,14 +34,18 @@ class Profile(models.Model):
 				("lbs", "lbs"),
 	)
 
+	height_choices = (
+				("cm", "cm"),
+	)
+
 	goal_choices = (
 				("lose_weight", "Lose weight"),
 				("maintain_weight", "Maintain weight"),
 				("gain_weight", "Gain weight"),
 	)
 
-	weight = models.FloatField(default=-1, validators=[MinValueValidator(0), MaxValueValidator(1000)])
-	age = models.IntegerField(default=-1, validators=[MinValueValidator(0), MaxValueValidator(100)])
+	weight = models.FloatField(default=-1, validators=[MinValueValidator(30), MaxValueValidator(1000)])
+	age = models.IntegerField(default=-1, validators=[MinValueValidator(1), MaxValueValidator(100)])
 	height = models.IntegerField(default=-1, validators=[MinValueValidator(0), MaxValueValidator(300)])
 
 	preferred_units = models.CharField(
@@ -51,6 +53,13 @@ class Profile(models.Model):
 		choices=units_choices,
 		max_length = 3,
 		)
+
+	preferred_height_units = models.CharField(
+		default="cm",
+		choices=height_choices,
+		max_length = 2,
+		)
+	
 
 	goal = models.CharField(
 		choices=goal_choices,
@@ -164,7 +173,7 @@ class MealsProfile(models.Model):
 		else:
 			return 2
 
-	calories = models.IntegerField(default = 2000, validators=[MinValueValidator(800), MaxValueValidator(10000)])
+	calories = models.IntegerField(default = 2000, validators=[MinValueValidator(600), MaxValueValidator(10000)])
 
 	def __str__(self):
 		return self.user.username + "'s MealsProfile"

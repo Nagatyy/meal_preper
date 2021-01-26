@@ -7,19 +7,14 @@
     Get Started
 {% endblock title %}
 
+{% block extrahead %} 
 
+    <link rel="stylesheet" type="text/css" href="{% static 'css/registration_complete_style.css' %}">
+    <meta name="robots" content="noindex, nofollow" />
+
+{% endblock extrahead %}
 
 {% block content %}
-
-
-<head>
-    <title>Registration - Meal Mill </title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/registration_complete_style.css' %}">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-</head>
-
-<body>
 
     <div class="form_wrapper">
         <div class="row justify-content-center" id = "main">
@@ -36,7 +31,6 @@
                                     </div>
                                     <form class="user" method="POST">
                                     	{% csrf_token %}
-
                                         
                                         <p> {{ m_form.errors }}</p>
    
@@ -76,21 +70,13 @@
                                     </form>
                                 </div>
                             </div>
-<!--                             <div class="col-lg-2 d-none d-lg-flex">
 
-                            </div> -->
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-
-<script type="text/javascript">
-
-</script>
-</body>
 
 
 {% endblock content %}

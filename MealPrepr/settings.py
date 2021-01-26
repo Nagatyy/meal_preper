@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-import sys
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -47,9 +46,11 @@ INSTALLED_APPS = [
     'crispy_forms',
     'jquery',
     'formtools',
+    'django_email_verification',
 
 
     'meal_plan',
+
 
 
 ]
@@ -115,6 +116,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTHENTICATION_BACKENDS = ('users.backends.CaseInsensitiveModelBackend', )
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
@@ -149,6 +152,32 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 LOGIN_URL = 'login'
 
 LOGOUT_REDIRECT_URL = 'login/'
+
+
+############# Email Verification
+
+def verified_callback(user):
+    user.is_active = True
+
+
+EMAIL_VERIFIED_CALLBACK = verified_callback
+EMAIL_FROM_ADDRESS = 'hello@mealmill.co'
+EMAIL_MAIL_SUBJECT = 'Verifty your Email'
+EMAIL_MAIL_HTML = './mail_body.html'
+EMAIL_MAIL_PLAIN = 'mail_body.txt'
+EMAIL_TOKEN_LIFE = 60 * 60
+EMAIL_PAGE_TEMPLATE = 'email_confirm.html'
+EMAIL_PAGE_DOMAIN = 'https://mealmill.co/'
+# EMAIL_PAGE_DOMAIN = 'http://127.0.0.1:8000/'
+
+# For Django Email Backend
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtppro.zoho.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'hello@mealmill.co'
+EMAIL_HOST_PASSWORD = 'Mohmohmohmoh12@'
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
 
 
 

@@ -171,17 +171,18 @@ $(document).ready(function() {
 		const settings = {
 			"async": true,
 			"crossDomain": true,
-			"url": url,
+			"url": "single/get/ajax/spoonacular",
 			"method": "GET",
-			"headers": {
-				"x-rapidapi-key": "469997c2c3msh7e5e3b5e60470e4p14dfeajsndca9151ca355",
-				"x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
-			}
+			data: { 
+			    url: url 
+			 }
 		};
 
 		$.ajax(settings).done(function (response) {
+
 			if(response.status === "failure" || response.status === 500){
 				document.getElementById("notFoundError").style.display = "block";
+				$('#spinner').hide();
 				return;
 			}
 
@@ -202,6 +203,7 @@ $(document).ready(function() {
 			
 
 		})
+
 		.fail(function() {
 			document.getElementById("notFoundError").style.display = "block";
 			$('#spinner').hide();
@@ -262,9 +264,6 @@ $(document).ready(function() {
 
 			$(".mealInfo").show();
 			$('#spinner').hide();
-			
-
-
 
 		}
 
@@ -280,12 +279,11 @@ $(document).ready(function() {
 			const settings = {
 				"async": true,
 				"crossDomain": true,
-				"url": `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${meal.id}/information?includeNutrition=true`,
+				"url": "single/get/ajax/spoonacular",
 				"method": "GET",
-				"headers": {
-					"x-rapidapi-key": "469997c2c3msh7e5e3b5e60470e4p14dfeajsndca9151ca355",
-					"x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
-				}
+				data: { 
+				    url: `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${meal.id}/information?includeNutrition=true` 
+				 }
 			};
 
 			$.ajax(settings).done(function (response) {

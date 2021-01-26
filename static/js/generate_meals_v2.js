@@ -21,10 +21,6 @@ class Meal {
 
 }
 
-
-
-
-
 $j(document).ready(function() {
 
 
@@ -181,14 +177,6 @@ $j(document).ready(function() {
 		        label: function(tooltipItem, data) {
 		        	return data['datasets'][0]['data'][tooltipItem['index']].toFixed(2) + '%';
 		        },
-		   //      afterLabel: function(tooltipItem, data) {
-		   //      	var multiplier = (tempCount <= 1) ? 4 : 9;
-					// var dataset = data['datasets'][0];
-					// console.log(dataset["_meta"][0]);
-					// var grams = Math.round(((dataset['data'][tooltipItem['index']] / 100) * mealsCalories) /  multiplier);
-					// tempCount++;
-					// return '(' + grams + 'g)';
-		   //      }
 		      },
 		      backgroundColor: '#FFF',
 		      titleFontSize: 12,
@@ -230,14 +218,28 @@ $j(document).ready(function() {
 			const settings = {
 				"async": true,
 				"crossDomain": true,
-				"url": "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random?number=1&limitLicense=false&tags=breakfast",
+				"url": "get/ajax/spoonacular",
 				"method": "GET",
-				"headers": {
-					"x-rapidapi-key": "469997c2c3msh7e5e3b5e60470e4p14dfeajsndca9151ca355",
-					"x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
-				}
+				data: { 
+				    url: "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random?number=1&limitLicense=false&tags=breakfast"
+				},
+				statusCode: {
+      				500: function() {
+      					swal({
+						    title: "Something went wrong",
+						    text: "We can't seem to find meals that match your calories. If this error persists, contact us at hello@mealmill.com",
+						    icon: "error",
+						    buttons: {
+						        confirm : {text:'OK',className:'confirmButton'},
+						    }
+						});
+
+       				}
+    			}
 			};
+
 			$.ajax(settings).done(async function (response) {
+
 				response = response.recipes[0];
 				meal.id = response.id;
 				meal.title = response.title;
@@ -248,7 +250,7 @@ $j(document).ready(function() {
 
 				var multiplier = await getCaloriesInMeal(meal, false);
 				if(multiplier === -1){
-					$("#errorModal").modal('show');
+					$j("#errorModal").modal('show');
 					return;
 				}
 				populateIngredientList(response.extendedIngredients, meal, multiplier);
@@ -257,7 +259,7 @@ $j(document).ready(function() {
 				
 			})
 			.fail(function() {
-				$("#errorModal").modal('show');
+				$j("#errorModal").modal('show');
 				document.getElementById("loader").style.display = "none";
 
 				mealsGenerated = 1000;
@@ -287,15 +289,28 @@ $j(document).ready(function() {
 			const settings = {
 				"async": true,
 				"crossDomain": true,
-				"url": `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByNutrients?maxCalories=${maxCalories}&minCalories=${minCalories}&maxProtein=${maxProtein}&minProtein=${minProtein}&maxFat=${maxFat}&minFat=${minFat}&maxCarbs=${maxCarbs}&minCarbs=${minCarbs}&offset=0&number=1&random=true&limitLicense=false`,
+				"url": "get/ajax/spoonacular",
 				"method": "GET",
-				"headers": {
-					"x-rapidapi-key": "469997c2c3msh7e5e3b5e60470e4p14dfeajsndca9151ca355",
-					"x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
-				}
+				data: { 
+				    url: `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByNutrients?maxCalories=${maxCalories}&minCalories=${minCalories}&maxProtein=${maxProtein}&minProtein=${minProtein}&maxFat=${maxFat}&minFat=${minFat}&maxCarbs=${maxCarbs}&minCarbs=${minCarbs}&offset=0&number=1&random=true&limitLicense=false`
+				},
+				statusCode: {
+      				500: function() {
+      					swal({
+						    title: "Something went wrong",
+						    text: "We can't seem to find meals that match your calories. If this error persists, contact us at hello@mealmill.com",
+						    icon: "error",
+						    buttons: {
+						        confirm : {text:'OK',className:'confirmButton'},
+						    }
+						});
+
+       				}
+    			}
 			};
 
 			$.ajax(settings).done(function (response) {
+
 				response = response[0];
 				meal.id = response.id;
 				meal.title = response.title;
@@ -308,7 +323,7 @@ $j(document).ready(function() {
 
 			})
 			.fail(function() {
-				$("#errorModal").modal('show');
+				$j("#errorModal").modal('show');
 				document.getElementById("loader").style.display = "none";
 				mealsGenerated = 1000;
 			});
@@ -372,16 +387,28 @@ $j(document).ready(function() {
 			const settings = {
 				"async": true,
 				"crossDomain": true,
-				"url": `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${meal.id}/nutritionWidget.json`,
+				"url": "get/ajax/spoonacular",
 				"method": "GET",
-				"headers": {
-					"x-rapidapi-key": "469997c2c3msh7e5e3b5e60470e4p14dfeajsndca9151ca355",
-					"x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
-				}
+				data: { 
+				    url: `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${meal.id}/nutritionWidget.json`
+				},
+				statusCode: {
+      				500: function() {
+      					swal({
+						    title: "Something went wrong",
+						    text: "We can't seem to find meals that match your calories. If this error persists, contact us at hello@mealmill.com",
+						    icon: "error",
+						    buttons: {
+						        confirm : {text:'OK',className:'confirmButton'},
+						    }
+						});
+
+       				}
+    			}
 			};
 
-			$.ajax(settings).done(function (response) {
 
+			$.ajax(settings).done(function (response) {
 
 				var multiplier = 1;
 				// if the breakfast is too small, make it multiple servings
@@ -441,7 +468,7 @@ $j(document).ready(function() {
 
 			})
 			.fail(function() {
-				$("#errorModal").modal('show');
+				$j("#errorModal").modal('show');
 				document.getElementById("loader").style.display = "none";
 				mealsGenerated = 1000;
 			});
@@ -456,12 +483,24 @@ $j(document).ready(function() {
 			const settings = {
 				"async": true,
 				"crossDomain": true,
-				"url": `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${meal.id}/information?includeNutrition=true`,
+				"url": "get/ajax/spoonacular",
 				"method": "GET",
-				"headers": {
-					"x-rapidapi-key": "469997c2c3msh7e5e3b5e60470e4p14dfeajsndca9151ca355",
-					"x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
-				}
+				data: { 
+				    url: `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${meal.id}/information?includeNutrition=true`
+				},
+				statusCode: {
+      				500: function() {
+      					swal({
+						    title: "Something went wrong",
+						    text: "We can't seem to find meals that match your calories. If this error persists, contact us at hello@mealmill.com",
+						    icon: "error",
+						    buttons: {
+						        confirm : {text:'OK',className:'confirmButton'},
+						    }
+						});
+
+       				}
+    			}
 			};
 
 			$.ajax(settings).done(function (response) {
@@ -497,7 +536,7 @@ $j(document).ready(function() {
 				resolve();
 			})
 			.fail(function() {
-				$("#errorModal").modal('show');
+				$j("#errorModal").modal('show');
 				document.getElementById("loader").style.display = "none";
 				mealsGenerated = 1000;
 			});
@@ -613,7 +652,7 @@ $j(document).ready(function() {
 	  		// 	console.log("success");
 	  		// },
 	  		error: function(response){
-	  			$("#errorModal").modal('show');
+	  			$j("#errorModal").modal('show');
 				document.getElementById("loader").style.display = "none";
 	  		}
 		};
@@ -635,7 +674,7 @@ $j(document).ready(function() {
 	  		// 	console.log("success");
 	  		// },
 	  		error: function(XMLHttpRequest, textStatus, errorThrown){
-	  			$("#errorModal").modal('show');
+	  			$j("#errorModal").modal('show');
 				document.getElementById("loader").style.display = "none";
 	  		}
 		};
@@ -647,12 +686,12 @@ $j(document).ready(function() {
 			// if the user has changed the number of meals since their previous meal plan
 			if (JSON.stringify(response) === "{}"){
 				// new user
-				$("#newUserModal").modal('show');
+				$j("#newUserModal").modal('show');
 				document.getElementById("loader").style.display = "none";
 				
 			}
 			else if(response.length != userNumOfMeals){
-				$("#regenerateModalFromChange").modal('show');
+				$j("#regenerateModalFromChange").modal('show');
 				document.getElementById("loader").style.display = "none";
 
 				// regenerateMeals();
@@ -688,14 +727,28 @@ $j(document).ready(function() {
 		const settings = {
 			"async": true,
 			"crossDomain": true,
-			"url": "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random?number=1&limitLicense=false&tags=breakfast",
+			"url": "get/ajax/spoonacular",
 			"method": "GET",
-			"headers": {
-				"x-rapidapi-key": "469997c2c3msh7e5e3b5e60470e4p14dfeajsndca9151ca355",
-				"x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
+			data: { 
+			    url: "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random?number=1&limitLicense=false&tags=breakfast"
+			},
+			statusCode: {
+  				500: function() {
+  					swal({
+					    title: "Something went wrong",
+					    text: "We can't seem to find meals that match your calories. If this error persists, contact us at hello@mealmill.com",
+					    icon: "error",
+					    buttons: {
+					        confirm : {text:'OK',className:'confirmButton'},
+					    }
+					});
+
+   				}
 			}
 		};
+
 		$.ajax(settings).done(async function (response) {
+			
 			response = response.recipes[0];
 			meal.id = response.id;
 			meal.title = response.title;
@@ -721,7 +774,7 @@ $j(document).ready(function() {
 			
 		})
 		.fail(function() {
-			$("#errorModal").modal('show');
+			$j("#errorModal").modal('show');
 			document.getElementById("loader").style.display = "none";
 			mealsGenerated = 1000;
 		});
@@ -762,18 +815,33 @@ $j(document).ready(function() {
 		var maxCarbs = carbsPerMeal+20;
 		var minCarbs = ((carbsPerMeal - 20) > 0) ? carbsPerMeal - 20: 0;
 
+
 		const settings = {
 			"async": true,
 			"crossDomain": true,
-			"url": `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByNutrients?maxCalories=${maxCalories}&minCalories=${minCalories}&maxProtein=${maxProtein}&minProtein=${minProtein}&maxFat=${maxFat}&minFat=${minFat}&maxCarbs=${maxCarbs}&minCarbs=${minCarbs}&offset=0&number=1&random=true&limitLicense=false`,
+			"url": "get/ajax/spoonacular",
 			"method": "GET",
-			"headers": {
-				"x-rapidapi-key": "469997c2c3msh7e5e3b5e60470e4p14dfeajsndca9151ca355",
-				"x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
+			data: { 
+			    url: `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByNutrients?maxCalories=${maxCalories}&minCalories=${minCalories}&maxProtein=${maxProtein}&minProtein=${minProtein}&maxFat=${maxFat}&minFat=${minFat}&maxCarbs=${maxCarbs}&minCarbs=${minCarbs}&offset=0&number=1&random=true&limitLicense=false`
+			},
+			statusCode: {
+  				500: function() {
+  					swal({
+					    title: "Something went wrong",
+					    text: "We can't seem to find meals that match your calories. If this error persists, contact us at hello@mealmill.com",
+					    icon: "error",
+					    buttons: {
+					        confirm : {text:'OK',className:'confirmButton'},
+					    }
+					});
+
+   				}
 			}
 		};
 
+
 		$.ajax(settings).done(async function (response) {
+
 			response = response[0];
 			meal.id = response.id;
 			meal.title = response.title;
@@ -798,7 +866,7 @@ $j(document).ready(function() {
 
 		})
 		.fail(function() {
-			$("#errorModal").modal('show');
+			$j("#errorModal").modal('show');
 			document.getElementById("loader").style.display = "none";
 			mealsGenerated = 1000;
 		});
@@ -851,7 +919,7 @@ $j(document).ready(function() {
 
 	  		error: function(XMLHttpRequest, textStatus, errorThrown){
 	  			// document.getElementById("loader").style.display = "none";
-	  			$("#errorModal").modal('show');
+	  			$j("#errorModal").modal('show');
 	  		}
 		};
 
@@ -873,7 +941,7 @@ $j(document).ready(function() {
 		  		// 	console.log("success");
 		  		// },
 		  		error: function(XMLHttpRequest, textStatus, errorThrown){
-		  			$("#errorModal").modal('show');
+		  			$j("#errorModal").modal('show');
 		  		}
 			};
 
