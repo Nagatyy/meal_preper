@@ -170,7 +170,7 @@ EMAIL_MAIL_HTML = './mail_body.html'
 EMAIL_MAIL_PLAIN = 'mail_body.txt'
 EMAIL_TOKEN_LIFE = 60 * 60
 EMAIL_PAGE_TEMPLATE = 'email_confirm.html'
-EMAIL_PAGE_DOMAIN = 'https://mealmill.co/'
+EMAIL_PAGE_DOMAIN = 'https://www.mealmill.co/'
 # EMAIL_PAGE_DOMAIN = 'http://127.0.0.1:8000/'
 
 # For Django Email Backend
