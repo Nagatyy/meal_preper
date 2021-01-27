@@ -3,6 +3,15 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-892HQEW60Z"></script>
+		<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+
+		  gtag('config', 'G-892HQEW60Z');
+		</script>
 		<title> Meal Mill - {% block title %} {% endblock title %}</title>
 
 
@@ -18,7 +27,7 @@
 
     	<link rel="shortcut icon" href="{% static 'images/favicon.ico' type='image/x-icon' %}">
 
-	     <!-- Our Custom CSS -->
+	     <!-- Custom CSS -->
     	<link rel="stylesheet" href="{% static 'css/sidebar_style.css' %}">
 
     	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
