@@ -43,7 +43,7 @@ https://inspiredwebdev.com/create-responsive-html-login-form -->
 
                 {{ wizard.form.media }}
 
-                <form action="/register/" method="POST" class="frm"> 
+                <form action="/register/" method="POST" class="frm" name="myForm"> 
                     {% csrf_token %}
 
                     <fieldset class="form-group">
@@ -85,13 +85,30 @@ https://inspiredwebdev.com/create-responsive-html-login-form -->
                                 </div>
 
                                 <div class="form-row">
-                                    <div class="form-group col-md-6 mb-0">
+                                    <div class="form-group col-md-6 mb-0" id="metric-div">
                                         {{ wizard.form.height|as_crispy_field }}
                                     </div>
+
+
+                                    <div class="form-group col-md-6 mb-0" style="display: none" id="imperial-div">
+                                        <div class="d-flex flex-row">
+                                            <div style="padding-right: 5px">
+                                                {{ wizard.form.height_feet_seg|as_crispy_field }}
+                                            </div>
+                                            <div>
+                                                {{ wizard.form.height_inches_seg|as_crispy_field }}
+                                            </div>
+                                            
+                                            
+                                        </div>
+
+                                    </div> 
+
                                     <div class="form-group col-md-6 mb-0">
                                         {{ wizard.form.preferred_height_units|as_crispy_field }}
                                     </div>
                                 </div>
+
 
                             {% endif %}
 
@@ -133,8 +150,31 @@ https://inspiredwebdev.com/create-responsive-html-login-form -->
 
             box.setWidth(250);
         });
-        
 
+
+        function setHeightSelection(){
+            if(document.getElementById("id_1-preferred_height_units_1").checked){
+                document.getElementById("imperial-div").style.display = "none";
+                document.getElementById("metric-div").style.display = "block"; 
+            }
+            else {
+                document.getElementById("metric-div").style.display = "none";
+                document.getElementById("imperial-div").style.display = "block"; 
+            }
+
+            document.getElementById("id_1-preferred_height_units_1").onclick = function(){
+                document.getElementById("imperial-div").style.display = "none";
+                document.getElementById("metric-div").style.display = "block"; 
+            }
+            document.getElementById("id_1-preferred_height_units_2").onclick = function(){
+                document.getElementById("metric-div").style.display = "none";
+                document.getElementById("imperial-div").style.display = "block"; 
+            }
+        }
+        {% if wizard.steps.prev %}
+            setHeightSelection();
+        {% endif %}
+        
     </script>
 
     <script src="https://cdn.jsdelivr.net/gh/StephanWagner/jBox@v1.2.0/dist/jBox.all.min.js"></script>

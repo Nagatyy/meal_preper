@@ -578,6 +578,16 @@ $j(document).ready(function() {
 			};
 
 			document.getElementById(`expandButton${modified_i}`).href = listOfMeals[i].mealUrl;
+			document.getElementById(`sourceButton${modified_i}`).onclick = function(){
+				swal({
+				    title: "Meal Source",
+				    text: listOfMeals[i].mealUrl,
+				    icon: "info",
+				    buttons: {
+				        confirm : {text:'OK',className:'confirmButton'},
+				    }
+				});
+			}
 			document.getElementById(`expandButtonMobile${modified_i}`).href = listOfMeals[i].mealUrl;
 			document.getElementById(`calories${modified_i}`).innerHTML = "Calories: " + listOfMeals[i].calories;
 			totalCalories += listOfMeals[i].calories;

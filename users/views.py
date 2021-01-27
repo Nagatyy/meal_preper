@@ -41,6 +41,14 @@ class RegisterWizard(SessionWizardView):
 			user.profile.goal = form_lst[1].cleaned_data.get('goal')
 			user.profile.preferred_units = form_lst[1].cleaned_data.get('preferred_units')
 			user.profile.height = form_lst[1].cleaned_data.get('height')
+			user.profile.height_feet_seg = form_lst[1].cleaned_data.get('height_feet_seg')
+
+			if not form_lst[1].cleaned_data.get('height_inches_seg') :
+				user.profile.height_inches_seg = 0
+			else:
+				user.profile.height_inches_seg = form_lst[1].cleaned_data.get('height_inches_seg')
+			
+			user.profile.preferred_height_units = form_lst[1].cleaned_data.get('preferred_height_units')
 			user.profile.save()
 
 			messages.success(self.request, f'Verification email sent to {user.email}!')

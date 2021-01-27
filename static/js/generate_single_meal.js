@@ -233,6 +233,16 @@ $(document).ready(function() {
     			window.open(listOfMeals[i].imageUrl);
 			};
 			document.getElementById(`expandButton1`).href = listOfMeals[i].mealUrl;
+			document.getElementById(`sourceButton1`).onclick = function(){
+				swal({
+				    title: "Meal Source",
+				    text: listOfMeals[i].mealUrl,
+				    icon: "info",
+				    buttons: {
+				        confirm : {text:'OK',className:'confirmButton'},
+				    }
+				});
+			}
 			document.getElementById(`calories1`).innerHTML = "Calories: " + listOfMeals[i].calories;
 
 			

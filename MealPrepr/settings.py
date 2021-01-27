@@ -165,7 +165,7 @@ def verified_callback(user):
 
 EMAIL_VERIFIED_CALLBACK = verified_callback
 EMAIL_FROM_ADDRESS = 'hello@mealmill.co'
-EMAIL_MAIL_SUBJECT = 'Verifty your Email'
+EMAIL_MAIL_SUBJECT = 'Verify your Email'
 EMAIL_MAIL_HTML = './mail_body.html'
 EMAIL_MAIL_PLAIN = 'mail_body.txt'
 EMAIL_TOKEN_LIFE = 60 * 60
@@ -174,8 +174,8 @@ EMAIL_PAGE_DOMAIN = 'https://www.mealmill.co/'
 # EMAIL_PAGE_DOMAIN = 'http://127.0.0.1:8000/'
 
 # For Django Email Backend
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_HOST = 'smtppro.zoho.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'hello@mealmill.co'

@@ -59,6 +59,7 @@ class UserRegistrationForm2(forms.ModelForm):
 
 	height_choices = (
 				("cm", "cm"),
+				("feet_and_inches", "feet and inches"),
 	)
 
 
@@ -74,15 +75,39 @@ class UserRegistrationForm2(forms.ModelForm):
 	activity_level = forms.ChoiceField(required=True, choices=activity_level_choices)
 
 	preferred_units = forms.ChoiceField(choices=units_choices, widget=forms.RadioSelect)
-	preferred_height_units = forms.ChoiceField(choices=height_choices, widget=forms.RadioSelect)
+	preferred_height_units = forms.ChoiceField(choices=height_choices, widget=forms.RadioSelect, initial="cm")
 	goal = forms.ChoiceField(required=True, choices=goal_choices, label="I want to: ")
 
-	height = forms.FloatField(required=True)
+	height = forms.FloatField(required=False, label='Height in cm')
+	height_feet_seg = forms.IntegerField(required=False, label='Feet')
+	height_inches_seg = forms.IntegerField(required=False, label='Inches')
 
+	def is_valid(self):
+
+		valid = super(UserRegistrationForm2, self).is_valid()
+
+		if not valid:
+			return valid
+
+		height_in_cm = self.cleaned_data['height']
+		height_imperial_feet = self.cleaned_data['height_feet_seg']
+		height_imperial_inches = self.cleaned_data['height_inches_seg']
+
+
+		if height_in_cm == None and height_imperial_feet == None:
+			if height_in_cm == None:
+				self._errors['height'] = ['Height is required']
+			if height_imperial_feet == None:
+				self._errors['height_feet_seg'] = ['Height is required']
+			
+			return False
+		
+		else:
+			return True
 
 	class Meta:
 		model = Profile
-		fields = ['gender','weight', 'age', 'height', 'activity_level', 'preferred_units', 'preferred_height_units', 'goal']
+		fields = ['gender','weight', 'age', 'height', 'height_feet_seg', 'height_inches_seg', 'activity_level', 'preferred_units', 'preferred_height_units', 'goal']
 
 
 

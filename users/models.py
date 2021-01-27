@@ -33,6 +33,7 @@ class Profile(models.Model):
 
 	height_choices = (
 				("cm", "cm"),
+				("feet_and_inches", "feet and inches"),
 	)
 
 	goal_choices = (
@@ -43,7 +44,9 @@ class Profile(models.Model):
 
 	weight = models.FloatField(default=-1, validators=[MinValueValidator(30), MaxValueValidator(1000)])
 	age = models.IntegerField(default=-1, validators=[MinValueValidator(1), MaxValueValidator(100)])
-	height = models.IntegerField(default=-1, validators=[MinValueValidator(0), MaxValueValidator(300)])
+	height = models.IntegerField(default=-1, validators=[MinValueValidator(120), MaxValueValidator(300)], null=True, blank=True)
+	height_feet_seg = models.IntegerField(default=-1, validators=[MinValueValidator(4), MaxValueValidator(8)], null=True, blank=True)
+	height_inches_seg = models.IntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(12)], null=True, blank=True)
 
 	preferred_units = models.CharField(
 		default="kg",
@@ -54,7 +57,7 @@ class Profile(models.Model):
 	preferred_height_units = models.CharField(
 		default="cm",
 		choices=height_choices,
-		max_length = 2,
+		max_length = 16,
 		)
 	
 
@@ -106,8 +109,13 @@ class MealsProfile(models.Model):
 
 		gender_adder = 5 if self.user.profile.gender == "male" else -161
 		lbs_multiplier = 1 if self.user.profile.preferred_units == "kg" else 2.25
+		h = self.user.profile.height
+		# if height was entered in imperial units
+		if not self.user.profile.height:
+			h = 30.48 * self.user.profile.height_feet_seg + 2.54 * self.user.profile.height_feet_seg
 
-		rec_cals = (10 * self.user.profile.weight / lbs_multiplier) + (6.25 * self.user.profile.height) - (5 * self.user.profile.age) + gender_adder
+
+		rec_cals = (10 * self.user.profile.weight / lbs_multiplier) + (6.25 * h) - (5 * self.user.profile.age) + gender_adder
 
 		if self.user.profile.activity_level == "couch_potato":
 			if self.user.profile.gender == "female":
