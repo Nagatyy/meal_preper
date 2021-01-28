@@ -185,8 +185,8 @@ EMAIL_USE_SSL = False
 DEFAULT_FROM_EMAIL = 'hello@mealmill.co'
 
 # SECURE_SSL_REDIRECT = True
-# PREPEND_WWW = True
-# BASE_URL = "https://www.mysite.de"
+SECURE_SSL_REDIRECT = (os.environ.get('SECURE_SSL_REDIRECT') == 'True')
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 
 django_heroku.settings(locals())
