@@ -23,7 +23,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from users.forms import UserRegistrationForm, UserRegistrationForm2
 
-from meal_plan.views import meal_plan_view, post_meal_plan, get_meal_plan, saved_meals_view, single_meal_view, update_saved_meals, get_saved_meals, spoonacular_endpoint
+from meal_plan.views import meal_plan_view, demo_meal_plan_view, post_meal_plan, get_meal_plan, saved_meals_view, single_meal_view, update_saved_meals, get_saved_meals, spoonacular_endpoint
 
 from django_email_verification import urls as email_urls
 
@@ -42,6 +42,8 @@ urlpatterns = [
 
     
     path('', home_view, name='home'),
+    path('demo/', demo_meal_plan_view, name='demo'),
+
     path('meals/plan/', meal_plan_view, name='mealplan'),
     path('meals/saved', saved_meals_view, name='savedmeals'),
     path('meals/single', single_meal_view, name='singlemeal'),
@@ -62,6 +64,7 @@ urlpatterns = [
 
     path('meals/single/get/ajax/spoonacular', spoonacular_endpoint, name='single_spoonacular_endpoint'),
     path('meals/plan/get/ajax/spoonacular', spoonacular_endpoint, name='single_spoonacular_endpoint'),
+    path('demo/get/ajax/spoonacular', spoonacular_endpoint, name='single_spoonacular_endpoint'),
 
 
 

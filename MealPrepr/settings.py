@@ -184,6 +184,11 @@ EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 DEFAULT_FROM_EMAIL = 'hello@mealmill.co'
 
+# SECURE_SSL_REDIRECT = True
+# PREPEND_WWW = True
+# BASE_URL = "https://www.mysite.de"
+
+
 django_heroku.settings(locals())
 
 

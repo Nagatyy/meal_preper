@@ -1,0 +1,39 @@
+body {
+    /* make the body full height*/
+    height: auto;
+    /* set our custom font */
+    /* create a linear gradient*/
+    background: rgba(12,112,32,1);
+    /*background: linear-gradient(0deg, rgba(61,186,88,1) 0%, rgba(12,112,32,1) 100%);*/
+    display:flex;
+    margin-bottom: 5%;
+    /*overflow: hidden;*/
+}
+
+#wrapper {
+    width: 90%;
+    height: auto;
+    /* this will help us center it*/
+    margin:auto;
+    border-radius: 3px;
+    /* make it a grid container*/
+    display: flex;
+    /* with two columns of same width*/
+    /* with a small gap in between them*/
+    /* add some padding around */
+    padding: 10vh 15px;
+    margin-top: 5%;
+    margin-bottom: 2%;
+
+
+}
+
+@media screen and (max-width:1000px) {
+    .container-fluid{
+        padding-left: 2px;
+        padding-right: 2px;
+    }
+    #wrapper{
+        width: 100%;
+    }
+}

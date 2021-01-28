@@ -31,6 +31,23 @@ def meal_plan_view(request):
 
 	return render(request, 'meal_plan/meals_page.html', context)
 
+def demo_meal_plan_view(request):
+
+	today = datetime.date.today()
+	x = today.strftime('%A %d')
+	context = {
+		'num_of_meals': 3,
+		'r_num_of_meals': range(3),
+		'num_of_snacks': 2,
+		'r_num_of_snacks': range(2),
+		'calories': 1900,
+		'protein_percent': 30,
+		'fat_percent': 30,
+		'carbs_percent': 40,
+		'date': x,
+	}
+
+	return render(request, 'meal_plan/demo_meals_page.html', context)
 
 @login_required
 def single_meal_view(request):
@@ -102,7 +119,6 @@ def get_saved_meals(request):
 		else:
 			return HttpResponse(json.loads(request.user.meals.user_saved_meals), content_type="application/json")
 
-@login_required
 def spoonacular_endpoint(request):
 	print(os.environ.get('SPOONACULAR_API_KEY'))
 	if request.is_ajax and request.method == "GET":

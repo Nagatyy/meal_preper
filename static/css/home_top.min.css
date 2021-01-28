@@ -179,6 +179,11 @@ button:hover {
 	border-color: black;
 	width: 35%;
 }
+.button__accent3{
+	color: #fff;
+	border-color: #fff;
+	width: 75%;
+}
 
 
 @media (min-width:992px) {
@@ -192,6 +197,11 @@ button:hover {
 		border-color: black;
 		color: #fff;
 	}
+	.button__accent3:hover {
+		background-color: black;
+		border-color: black;
+		color: #fff;
+}
 }
 
 .button__delete {
