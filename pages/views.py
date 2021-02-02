@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .forms import ContactForm
 from django.contrib import messages
@@ -9,6 +9,8 @@ from django.conf import settings
 # Create your views here.
 
 def home_view(request):
+	if request.user.is_authenticated:
+		return redirect('mealplan')
 	return render(request, 'home.html', {})
 
 @login_required

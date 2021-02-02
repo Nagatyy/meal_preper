@@ -138,6 +138,11 @@ class ProfileUpdateForm(forms.ModelForm):
 
 class ProfileMacrosForm(forms.ModelForm):
 
+	def __init__(self, *args, **kwargs): 
+	    super(forms.ModelForm, self).__init__(*args, **kwargs)
+	    self.fields['num_of_meals'].label = 'Number of Meals' 
+	    self.fields['num_of_snacks'].label = 'Number of Snacks' 
+
 	def is_valid(self):
 
 		valid = super(ProfileMacrosForm, self).is_valid()
