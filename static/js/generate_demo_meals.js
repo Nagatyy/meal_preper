@@ -413,6 +413,7 @@ $(document).ready(function() {
 
 
 			$.ajax(settings).done(function (response) {
+				response.calories = response.calories.slice(0, -1);
 
 				var multiplier = 1;
 				// if the breakfast is too small, make it multiple servings

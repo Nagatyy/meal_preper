@@ -179,7 +179,7 @@ $(document).ready(function() {
 		};
 
 		$.ajax(settings).done(function (response) {
-
+		
 			if(response.status === "failure" || response.status === 500){
 				document.getElementById("notFoundError").style.display = "block";
 				$('#spinner').hide();

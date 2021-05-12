@@ -339,8 +339,6 @@ $j(document).ready(function() {
 		
 		for(var ingredient of ingList){
 		
-			// console.log(ingredient.measures.metric);
-
 			ingredientsText = "";
 
 			// set the quanitity
@@ -409,6 +407,7 @@ $j(document).ready(function() {
 
 
 			$.ajax(settings).done(function (response) {
+				response.calories = response.calories.slice(0, -1);
 
 				var multiplier = 1;
 				// if the breakfast is too small, make it multiple servings
@@ -417,7 +416,6 @@ $j(document).ready(function() {
 					multiplier = 1;
 
 				meal.calories = response.calories * multiplier;
-				// meal.servings = multiplier;
 
 				meal.gramsOfProtein = (response.protein.slice(0, -1) * multiplier);
 				meal.gramsOfCarbs = (response.carbs.slice(0, -1) * multiplier);
@@ -458,6 +456,7 @@ $j(document).ready(function() {
 
 				caloriesRemaining = mealsCalories - meal.calories;
 				caloriesPerMeal = Math.round(caloriesRemaining / (userNumOfMeals - 1));
+				// console.log(meal.calories);
 				proteinPerMeal = Math.round(totalProtein / (userNumOfMeals-1));
 				carbsPerMeal = Math.round(totalCarbs / (userNumOfMeals-1));
 				fatPerMeal = Math.round(totalFat / (userNumOfMeals-1));
